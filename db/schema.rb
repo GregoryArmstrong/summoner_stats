@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229232704) do
+ActiveRecord::Schema.define(version: 20160301014319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160229232704) do
     t.string   "summoner_name"
     t.string   "region"
     t.string   "password_digest"
+    t.integer  "summoner_id"
   end
 
 end
