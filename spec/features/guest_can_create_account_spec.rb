@@ -11,6 +11,8 @@ RSpec.feature "GuestCanCreateAccount", type: :feature do
     fill_in "Name", with: "Gregory Armstrong"
     fill_in "Summoner Name", with: "OctopusMachine"
     fill_in "Region", with: "NA"
+    fill_in "Password", with: "password"
+    fill_in "Password Confirmation", with: "password"
     click_on("Create Account")
 
     user = User.last

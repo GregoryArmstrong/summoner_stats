@@ -9,7 +9,9 @@ RSpec.feature "UserLogsInWithTwitters", type: :feature do
 
     click_link "Login with Twitter"
 
-    expect(current_path).to eq root_path
+    user = User.last
+
+    expect(current_path).to eq user_path(user)
     expect(page).to have_content("Gregory Armstrong")
   end
 end

@@ -1,10 +1,21 @@
 class SessionsController < ApplicationController
 
+  def new
+  end
+
   def create
-    if user = User.from_omniauth(request.env["omniauth.auth"])
-      session[:user_id] = user.id
+    if request.env["omniauth.auth"]
+      @user = User.from_omniauth(request.env["omniauth.auth"])
+      @user.save
+    else
+      @user = User.find_by(name: params[:session][:name])
     end
-    redirect_to root_path
+    if @user && (@user.provider || @user.authenticate(params[:session][:password]))
+      session[:user_id] ||= @user.id
+      redirect_to user_path(@user)
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
