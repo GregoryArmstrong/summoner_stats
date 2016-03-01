@@ -1,0 +1,9 @@
+<%= form_for(:user, url: user_path(@user), method: :put ) do |f| %>
+  <%= f.label :summoner_name, "Summoner Name" %>
+  <%= f.text_field :summoner_name %>
+
+  <%= f.label :region %>
+  <%= f.text_field :region %>
+
+  <%= f.submit "Update" %>
+<% end %>

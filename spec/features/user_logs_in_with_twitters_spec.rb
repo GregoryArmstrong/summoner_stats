@@ -14,4 +14,28 @@ RSpec.feature "UserLogsInWithTwitters", type: :feature do
     expect(current_path).to eq user_path(user)
     expect(page).to have_content("Gregory Armstrong")
   end
+
+  scenario "guest who has registered via twitter oauth can add summoner name/region" do
+    visit root_path
+
+    click_link "Login with Twitter"
+
+    user = User.last
+
+    expect(current_path).to eq user_path(user)
+
+    expect(page).to have_content("Gregory Armstrong")
+    expect(page).to_not have_content("OctopusMachine")
+    expect(page).to_not have_content("NA")
+
+    click_link "Add Summoner Name/Region"
+
+    fill_in "Summoner Name", with: "OctopusMachine"
+    fill_in "Region", with: "NA"
+    click_on("Update")
+
+    expect(current_path).to eq user_path(user)
+    expect(page).to have_content("OctopusMachine")
+    expect(page).to have_content("NA")
+  end
 end
