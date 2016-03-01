@@ -12,16 +12,36 @@
   <% end %>
   <div class="container center">
     <% @presenter.recent_games.each do |game| %>
-    <div class="card large">
-      <div class="card-image waves-effect waves-block waves-light">
-        <img src="" class="activator"/>
+    <div class="card medium black">
+      <div class="card-image">
+        <%= image_tag(Champion.find_by(champion_id: game[:championId]).image, width: '306', height: '560') %>
       </div>
       <div class="card-content">
-        <span class="card-title activator grey-text text-darken-4">Title<i class="material-icons right">more_vert</i></span>
+        <span class="card-title grey-text text-darken-4">
+          <% if game[:stats][:win] == true %>
+            <div class="card-panel activator green darken-3">
+          <% else %>
+            <div class="card-panel activator red darken-3">
+          <% end %>
+              Kills: <%= game[:stats][:championsKilled] %>
+              Deaths: <%= game[:stats][:numDeaths] %>
+              Assists: <%= game[:stats][:assists] %>
+              Gold Earned: <%= game[:stats][:goldEarned] %>
+              Wards: <%= game[:stats][:wardPlaced] %>
+          </div>
+        </span>
       </div>
-      <div class="card-reveal">
-        <span class="card-title grey-text text-darken-4">Title</span>
-        <%= game %>
+      <div class="card-reveal black">
+        <span class="card-title white-text text-darken-4">
+          <% if game[:stats][:win] == true %>
+            Victory
+          <% else %>
+            Defeat
+          <% end %>
+        </span>
+        <div class="white-text">
+          <%= game %>
+        </div>
       </div>
     </div>
     <% end %>
