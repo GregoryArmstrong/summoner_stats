@@ -1,4 +1,7 @@
 <%= link_to "Logout", logout_path %>
+<% if current_user && current_user.summoner_name == nil %>
+  <%= link_to "Add Summoner Name/Region", edit_user_path(session[:user_id]) %>
+<% end %>
 
 <h1><%= @user.name %>'s Dashboard</h1>
 <h2><%= @user.summoner_name %></h2>
