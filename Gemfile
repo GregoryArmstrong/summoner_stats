@@ -1,4 +1,3 @@
-source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -42,7 +41,6 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'faraday'
-  gem 'vcr'
 
 end
 

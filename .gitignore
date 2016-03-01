@@ -13,3 +13,4 @@
 /tmp
 /coverage
 /config/application.yml
+/spec/vcr
