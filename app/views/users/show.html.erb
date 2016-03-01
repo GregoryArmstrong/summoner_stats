@@ -1,13 +1,29 @@
 <div class="container-fluid center">
   <%= link_to "Logout", logout_path %>
   <% if current_user && current_user.summoner_name == nil %>
-    <%= link_to "Add Summoner Name/Region", edit_user_path(session[:user_id]) %>
+  <%= link_to "Add Summoner Name/Region", edit_user_path(session[:user_id]) %>
   <% end %>
 
   <h1><%= @user.name %>'s Dashboard</h1>
   <h2><%= @user.summoner_name %></h2>
   <h2><%= @user.region %></h2>
   <% if @user.summoner_name && @user.region %>
-    <h3>Summoner ID: <%= @presenter.show_summoner_id %></h3>
+  <h3>Summoner ID: <%= @presenter.show_summoner_id %></h3>
   <% end %>
+  <div class="container center">
+    <% @presenter.recent_games.each do |game| %>
+    <div class="card large">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img src="" class="activator"/>
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">Title<i class="material-icons right">more_vert</i></span>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Title</span>
+        <%= game %>
+      </div>
+    </div>
+    <% end %>
+  </div>
 </div>

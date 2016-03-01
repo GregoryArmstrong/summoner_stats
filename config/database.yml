@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: summoner_stats_production
-  username: summoner_stats
-  password: <%= ENV['SUMMONER_STATS_DATABASE_PASSWORD'] %>
+  # username: summoner_stats
+  # password: <%= ENV['SUMMONER_STATS_DATABASE_PASSWORD'] %>

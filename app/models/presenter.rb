@@ -22,6 +22,12 @@ class Presenter
     end
   end
 
+  def recent_games
+    service.recent_games[:games].each do |game|
+      build_object(game)
+    end
+  end
+
   private
 
   def build_object(data)
