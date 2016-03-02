@@ -13,6 +13,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    unless @user.summoner_name.nil? || @user.region.nil?
+      @presenter = Presenter.new(@user)
+    end
   end
 
   def edit
