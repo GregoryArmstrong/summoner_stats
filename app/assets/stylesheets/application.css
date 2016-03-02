@@ -14,8 +14,14 @@
  *= require_self
  */
 
+@font-face {
+  font-family: "Imperator";
+  src: "/assets/Imperator.ttf" format("truetype");
+}
+
 body {
   background-color: #E3DFBA;
+  font-family: "Imperator";
 }
 
 h1 {
