@@ -10,6 +10,16 @@
   <% if @user.summoner_name && @user.region %>
     <h3>Summoner ID: <%= @presenter.show_summoner_id %></h3>
   <% end %>
-
-  <h3>10 Most Recent Games:</h3>
-  <%= render partial: 'game_card', collection: @games, as: :game %>
+  <div class="container">
+    <div class="card-panel kda black">
+      <div class="card-content text-match-background">
+        <h3><span class="card-title text-match-background">10 Most Recent Games' Averages</span></h3>
+        <br>
+        Kills: <%= @games_averages[:kills] %> Deaths: <%= @games_averages[:deaths] %> Assists: <%= @games_averages[:assists] %>
+        <br>
+        KDA: <%= @games_averages[:kda] %>
+      </div>
+    </div>
+  </div>
+<br>
+<%= render partial: 'game_card', collection: @games, as: :game %>
