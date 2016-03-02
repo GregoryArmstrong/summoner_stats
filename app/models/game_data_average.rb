@@ -30,7 +30,7 @@ class GameDataAverage
      kills: average(@kills),
      deaths: average(@deaths),
      assists: average(@assists),
-     kda: ((average(@kills) + average(@assists) / average(@deaths))).round(2)
+     kda: ((average(@kills) + average(@assists)) / average(@deaths)).round(2)
     }
   end
 

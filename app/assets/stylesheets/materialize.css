@@ -7304,14 +7304,17 @@ nav ul a span.badge {
 
 nav {
   color: #fff;
-  background-color: #ee6e73;
+  background-color: #1182AB;
   width: 100%;
   height: 56px;
   line-height: 56px;
 }
+nav h3 {
+  color:#E3DFBA;
+}
 
 nav a {
-  color: #fff;
+  color: #E3DFBA;
 }
 
 nav i,
@@ -7349,7 +7352,7 @@ nav .button-collapse i {
 
 nav .brand-logo {
   position: absolute;
-  color: #fff;
+  color: #E3DFBA;
   display: inline-block;
   font-size: 2.1rem;
   padding: 0;
@@ -7404,7 +7407,7 @@ nav ul li.active {
 nav ul a {
   transition: background-color .3s;
   font-size: 1rem;
-  color: #fff;
+  color: #E3DFBA;
   display: block;
   padding: 0 15px;
   cursor: pointer;

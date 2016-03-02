@@ -6,10 +6,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render partial: "partials/navbar" %>
 
-<%= yield %>
+  <%= yield %>
 
-<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

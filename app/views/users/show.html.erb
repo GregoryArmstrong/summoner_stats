@@ -1,5 +1,4 @@
 <div class="container-fluid center">
-  <%= link_to "Logout", logout_path %>
   <% if current_user && current_user.summoner_name.nil? %>
     <%= link_to "Add Summoner Name/Region", edit_user_path(session[:user_id]) %>
   <% end %>
@@ -22,4 +21,4 @@
     </div>
   </div>
 <br>
-<%= render partial: 'game_card', collection: @games, as: :game %>
+<%= render partial: 'partials/game_card', collection: @games, as: :game %>
