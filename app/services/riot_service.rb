@@ -35,6 +35,10 @@ class RiotService
     end)
   end
 
+  def all_items
+    parse(connection_settings("api/lol/static-data/#{user.region.downcase}/v1.2/item"))
+  end
+
   private
 
   def parse(response)

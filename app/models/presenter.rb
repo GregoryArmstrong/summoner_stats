@@ -8,6 +8,7 @@ class Presenter
       all_champions
       single_champion_info
     end
+    all_items
   end
 
   def service
@@ -48,6 +49,17 @@ class Presenter
       champion.title = info[:title]
       champion.image = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/#{info[:name]}_0.jpg"
       champion.save
+    end
+  end
+
+  def all_items
+    service.all_items[:data].each do |item|
+      Item.find_or_create_by(item_id: item[1][:id]) do |new_item|
+        new_item.name = item[1][:name]
+        new_item.description = item[1][:plaintext]
+        new_item.image = "http://ddragon.leagueoflegends.com/cdn/6.4.2/img/item/#{item[1][:id]}.png"
+        new_item.save
+      end
     end
   end
 
