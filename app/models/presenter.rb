@@ -4,6 +4,7 @@ class Presenter
 
   def initialize(current_user)
     @current_user = current_user
+    show_summoner_id
     if (Champion.count != 129) || (Champion.where(image: nil).any?)
       all_champions
       single_champion_info
@@ -28,8 +29,8 @@ class Presenter
   end
 
   def recent_games
-    service.recent_games[:games].each do |game|
-      build_object(game)
+    service.recent_games[:games].map do |game|
+      GameData.new(game)
     end
   end
 

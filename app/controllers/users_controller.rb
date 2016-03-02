@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     user = User.create(user_params)
 
     flash[:success] = "Account Created"
+    Presenter.new(user).show_summoner_id
     redirect_to user_path(user)
   end
 
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
     unless @user.summoner_name.nil? || @user.region.nil?
       @presenter = Presenter.new(@user)
     end
+    @games = @presenter.recent_games if @presenter
   end
 
   def edit
