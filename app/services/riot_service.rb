@@ -19,7 +19,6 @@ class RiotService
   end
 
   def recent_games
-    # binding.pry
     parse(connection_settings("api/lol/#{user.region.downcase}/v1.3/game/by-summoner/#{user.summoner_id}/recent"))
   end
 
