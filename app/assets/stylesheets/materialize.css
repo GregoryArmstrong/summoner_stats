@@ -7739,7 +7739,7 @@ small {
 }
 
 .card.small .card-image, .card.medium .card-image, .card.large .card-image {
-  max-height: 70%;
+  max-height: 65%;
   overflow: hidden;
 }
 

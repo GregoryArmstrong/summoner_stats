@@ -3,13 +3,13 @@
   <% if current_user && current_user.summoner_name == nil %>
   <%= link_to "Add Summoner Name/Region", edit_user_path(session[:user_id]) %>
   <% end %>
-
   <h1><%= @user.name %>'s Dashboard</h1>
   <h2><%= @user.summoner_name %></h2>
   <h2><%= @user.region %></h2>
   <% if @user.summoner_name && @user.region %>
   <h3>Summoner ID: <%= @presenter.show_summoner_id %></h3>
   <% end %>
+  <h3>10 Most Recent Games:</h3>
   <div class="container center">
     <% @presenter.recent_games.each do |game| %>
     <div class="card medium black">
@@ -19,31 +19,100 @@
       <div class="card-content">
         <span class="card-title grey-text text-darken-4">
           <% if game[:stats][:win] == true %>
-            <div class="card-panel activator green darken-3">
-          <% else %>
+          <div class="card-panel activator green darken-3">
+            <% else %>
             <div class="card-panel activator red darken-3">
-          <% end %>
-              Kills: <%= game[:stats][:championsKilled] %>
-              Deaths: <%= game[:stats][:numDeaths] %>
-              Assists: <%= game[:stats][:assists] %>
-              Gold Earned: <%= game[:stats][:goldEarned] %>
-              Wards: <%= game[:stats][:wardPlaced] %>
-          </div>
-        </span>
-      </div>
-      <div class="card-reveal black">
-        <span class="card-title white-text text-darken-4">
-          <% if game[:stats][:win] == true %>
+              <% end %>
+              <%= Champion.find_by(champion_id: game[:championId]).name %>
+              |||
+              Kills: <%= game[:stats][:championsKilled] || 0 %>
+              Deaths: <%= game[:stats][:numDeaths] || 0 %>
+              Assists: <%= game[:stats][:assists] || 0 %>
+              KDA: <%= (((game[:stats][:championsKilled] ||  0 ).to_f + (game[:stats][:assists] || 0).to_f) / game[:stats][:numDeaths].to_f).round(2) %>
+            </div>
+          </span>
+        </div>
+        <div class="card-reveal black">
+          <span class="card-title white-text text-darken-4">
+            <% if game[:stats][:win] == true %>
             Victory
-          <% else %>
+            <% else %>
             Defeat
-          <% end %>
-        </span>
-        <div class="white-text">
-          <%= game %>
+            <% end %>
+          </span>
+          <div class="white-text">
+            <div class="row">
+              <%= game[:subType].gsub("_", " ") %>,
+              IP Earned: <%= game[:ipEarned] %>
+            </div>
+            <div class="row">
+              <div class="col s6">
+                <div class="card-panel black">
+                  Max Level: <%= game[:stats][:level] %>
+                  <br>
+                  Creep Score: <%= game[:stats][:minionsKilled] || 0 %>
+                  <br>
+                  Neutral Minions Total Score: <%= game[:stats][:neutralMinionsKilled] || 0 %>
+                  <br>
+                  Neutral Minions Enemy Jungle Score: <%= game[:stats][:neutralMinionsKilledEnemyJungle] || 0 %>
+                  <br>
+                  Neutral Minions Friendly Jungle Score: <%= game[:stats][:neutralMinionsKilledYourJungle] || 0 %>
+                  <br>
+                  Gold Earned: <%= game[:stats][:goldEarned] %>
+                  <br>
+                  Gold Spent: <%= game[:stats][:goldSpent] %>
+                  <br>
+                  Unspent Gold: <%= (game[:stats][:goldEarned] - game[:stats][:goldSpent]) %>
+                  <br>
+                  Inhibitors Destroyed: <%= game[:stats][:barracksKilled] || 0 %>
+                  <br>
+                  Towers Destroyed: <%= game[:stats][:turretsKilled] || 0 %>
+                  <br>
+                  Wards Placed: <%= game[:stats][:wardPlaced] || 0 %>
+                  <br>
+                  Vision Wards Purchased: <%= game[:stats][:visionWardsBought] || 0 %>
+                  <br>
+                  Wards Destroyed: <%= game[:stats][:wardKilled] || 0 %>
+                  <br>
+                  Total Healing: <%= game[:stats][:totalHeal] || 0 %>
+                </div>
+              </div>
+              <div class="col s6">
+                <div class="card-panel black">
+                  Kills: <%= game[:stats][:championsKilled] || 0 %>
+                  <br>
+                  Deaths: <%= game[:stats][:numDeaths] || 0 %>
+                  <br>
+                  Assists: <%= game[:stats][:assists] || 0 %>
+                  <br>
+                  Killing Sprees: <%= game[:stats][:killingSprees] || 0 %>
+                  <br>
+                  Largest Killing Spree: <%= game[:stats][:largestKillingSpree] || 0 %>
+                  <br>
+                  Largest Multi-Kill: <%= game[:stats][:largestMultiKill] || 0 %>
+                  <br>
+                  Total Damage: <%= game[:stats][:totalDamageDealt] %>
+                  <br>
+                  Total Damage Taken: <%= game[:stats][:totalDamageTaken] %>
+                  <br>
+                  Physical Damage Dealt: <%= game[:stats][:physicalDamageDealtPlayer] %>
+                  <br>
+                  Physical Damage Taken: <%= game[:stats][:physicalDamageTaken] %>
+                  <br>
+                  Magic Damage Dealt: <%= game[:stats][:magicDamageDealtPlayer] %>
+                  <br>
+                  Magic Damage Taken: <%= game[:stats][:magicDamageTaken] %>
+                  <br>
+                  True Damage Dealt: <%= game[:stats][:trueDamageDealtPlayer] %>
+                  <br>
+                  True Damage Taken: <%= game[:stats][:trueDamageTaken] %>
+                </div>
+              </div>
+            </div>
+            <%= game %>
+          </div>
         </div>
       </div>
+      <% end %>
     </div>
-    <% end %>
   </div>
-</div>
