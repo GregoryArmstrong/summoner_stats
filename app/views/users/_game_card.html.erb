@@ -101,19 +101,47 @@
               <ul class="collection with-header">
                 <li class="collection-header"><h4>Items</h4></li>
                 <% item_0 = Item.find_by(item_id: game[:stats][:item0]) %>
-                <li class="collection-item black"><%= item_0.name %> <%= image_tag(item_0.image) %> <%= item_0.description %></li>
+                <li class="collection-item avatar black">
+                  <%= image_tag(item_0.image, class: "circle") %>
+                  <span class="title"><%= item_0.name %></span>
+                  <p>Description: <%= item_0.description %></p>
+                </li>
                 <% item_1 = Item.find_by(item_id: game[:stats][:item1]) %>
-                <li class="collection-item black"><%= item_1.name %> <%= image_tag(item_1.image) %> <%= item_1.description %></li>
+                <li class="collection-item avatar black">
+                  <%= image_tag(item_1.image, class: "circle") %>
+                  <span class="title"><%= item_1.name %></span>
+                  <p>Description: <%= item_1.description %></p>
+                </li>
                 <% item_2 = Item.find_by(item_id: game[:stats][:item2]) %>
-                <li class="collection-item black"><%= item_2.name %> <%= image_tag(item_2.image) %> <%= item_2.description %></li>
+                <li class="collection-item avatar black">
+                  <%= image_tag(item_2.image, class: "circle") %>
+                  <span class="title"><%= item_2.name %></span>
+                  <p>Description: <%= item_2.description %></p>
+                </li>
                 <% item_3 = Item.find_by(item_id: game[:stats][:item3]) %>
-                <li class="collection-item black"><%= item_3.name %> <%= image_tag(item_3.image) %> <%= item_3.description %></li>
+                <li class="collection-item avatar black">
+                  <%= image_tag(item_3.image, class: "circle") %>
+                  <span class="title"><%= item_3.name %></span>
+                  <p>Description: <%= item_3.description %></p>
+                </li>
                 <% item_4 = Item.find_by(item_id: game[:stats][:item4]) %>
-                <li class="collection-item black"><%= item_4.name %> <%= image_tag(item_4.image) %> <%= item_4.description %></li>
+                <li class="collection-item avatar black">
+                  <%= image_tag(item_4.image, class: "circle") %>
+                  <span class="title"><%= item_4.name %></span>
+                  <p>Description: <%= item_4.description %></p>
+                </li>
                 <% item_5 = Item.find_by(item_id: game[:stats][:item5]) if game[:stats][:item5] %>
-                <li class="collection-item black"><%= item_5.name if game[:stats][:item5] %> <%= image_tag(item_5.image) if game[:stats][:item5] %> <%= item_5.description if game[:stats][:item5] %></li>
+                <li class="collection-item avatar black">
+                  <%= image_tag(item_5.image, class: "circle") if game[:stats][:item5] %>
+                  <span class="title"><%= item_5.name if game[:stats][:item5] %></span>
+                  <p>Description: <%= item_5.description if game[:stats][:item5] %></p>
+                </li>
                 <% item_6 = Item.find_by(item_id: game[:stats][:item6]) if game[:stats][:item6] %>
-                <li class="collection-item black"><%= item_6.name if game[:stats][:item6] %> <%= image_tag(item_6.image) if game[:stats][:item6] %> <%= item_6.description if game[:stats][:item6] %></li>
+                <li class="collection-item avatar black">
+                  <%= image_tag(item_6.image, class: "circle") if game[:stats][:item6] %>
+                  <span class="title"><%= item_6.name if game[:stats][:item6] %></span>
+                  <p>Description: <%= item_6.description if game[:stats][:item6] %></p>
+                </li>
               </ul>
             </div>
           </div>
