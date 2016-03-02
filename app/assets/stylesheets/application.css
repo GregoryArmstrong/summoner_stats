@@ -43,3 +43,11 @@ h4 {
 .btn {
   background-color: #1A1F1E;
 }
+
+.text-match-background {
+  color: #E3DFBA;
+}
+
+.match-background {
+  background-color: #E3DFBA;
+}
