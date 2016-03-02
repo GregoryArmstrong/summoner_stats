@@ -18,6 +18,7 @@ class UsersController < ApplicationController
       @presenter = Presenter.new(@user)
     end
     @games = @presenter.recent_games if @presenter
+    @games_averages = @presenter.recent_games_averages.averages
   end
 
   def edit

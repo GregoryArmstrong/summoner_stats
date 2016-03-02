@@ -34,6 +34,10 @@ class Presenter
     end
   end
 
+  def recent_games_averages
+    GameDataAverage.new(recent_games)
+  end
+
   def all_champions
     service.all_champions[:champions].each do |champion|
       Champion.find_or_create_by(champion_id: champion[:id]) do |new_champion|
