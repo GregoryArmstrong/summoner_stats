@@ -1,138 +1,15 @@
 <div class="container-fluid center">
   <%= link_to "Logout", logout_path %>
-  <% if current_user && current_user.summoner_name == nil %>
-  <%= link_to "Add Summoner Name/Region", edit_user_path(session[:user_id]) %>
+  <% if current_user && current_user.summoner_name.nil? %>
+    <%= link_to "Add Summoner Name/Region", edit_user_path(session[:user_id]) %>
   <% end %>
+
   <h1><%= @user.name %>'s Dashboard</h1>
   <h2>Region: <%= @user.region %></h2>
   <h2>Summoner Name: <%= @user.summoner_name %></h2>
   <% if @user.summoner_name && @user.region %>
-  <h3>Summoner ID: <%= @presenter.show_summoner_id %></h3>
+    <h3>Summoner ID: <%= @presenter.show_summoner_id %></h3>
   <% end %>
+
   <h3>10 Most Recent Games:</h3>
-  <div class="container center">
-    <% @presenter.recent_games.each do |game| %>
-    <div class="card medium black">
-      <div class="card-image">
-        <%= image_tag(Champion.find_by(champion_id: game[:championId]).image, width: '306', height: '560') %>
-      </div>
-      <div class="card-content">
-        <span class="card-title grey-text text-darken-4">
-          <% if game[:stats][:win] == true %>
-          <div class="card-panel activator green darken-3">
-            <% else %>
-            <div class="card-panel activator red darken-3">
-              <% end %>
-              <%= Champion.find_by(champion_id: game[:championId]).name %>
-              |||
-              Kills: <%= game[:stats][:championsKilled] || 0 %>
-              Deaths: <%= game[:stats][:numDeaths] || 0 %>
-              Assists: <%= game[:stats][:assists] || 0 %>
-              KDA: <%= (((game[:stats][:championsKilled] ||  0 ).to_f + (game[:stats][:assists] || 0).to_f) / game[:stats][:numDeaths].to_f).round(2) %>
-            </div>
-          </span>
-        </div>
-        <div class="card-reveal black">
-          <span class="card-title white-text text-darken-4">
-            <% if game[:stats][:win] == true %>
-            Victory
-            <% else %>
-            Defeat
-            <% end %>
-          </span>
-          <div class="white-text">
-            <div class="row">
-              <%= game[:subType].gsub("_", " ") %>,
-              IP Earned: <%= game[:ipEarned] %>
-            </div>
-            <div class="row">
-              <div class="col s6">
-                <div class="card-panel black">
-                  Max Level: <%= game[:stats][:level] %>
-                  <br>
-                  Creep Score: <%= game[:stats][:minionsKilled] || 0 %>
-                  <br>
-                  Neutral Minions Total Score: <%= game[:stats][:neutralMinionsKilled] || 0 %>
-                  <br>
-                  Neutral Minions Enemy Jungle Score: <%= game[:stats][:neutralMinionsKilledEnemyJungle] || 0 %>
-                  <br>
-                  Neutral Minions Friendly Jungle Score: <%= game[:stats][:neutralMinionsKilledYourJungle] || 0 %>
-                  <br>
-                  Gold Earned: <%= game[:stats][:goldEarned] %>
-                  <br>
-                  Gold Spent: <%= game[:stats][:goldSpent] %>
-                  <br>
-                  Unspent Gold: <%= (game[:stats][:goldEarned] - game[:stats][:goldSpent]) %>
-                  <br>
-                  Inhibitors Destroyed: <%= game[:stats][:barracksKilled] || 0 %>
-                  <br>
-                  Towers Destroyed: <%= game[:stats][:turretsKilled] || 0 %>
-                  <br>
-                  Wards Placed: <%= game[:stats][:wardPlaced] || 0 %>
-                  <br>
-                  Vision Wards Purchased: <%= game[:stats][:visionWardsBought] || 0 %>
-                  <br>
-                  Wards Destroyed: <%= game[:stats][:wardKilled] || 0 %>
-                  <br>
-                  Total Healing: <%= game[:stats][:totalHeal] || 0 %>
-                </div>
-              </div>
-              <div class="col s6">
-                <div class="card-panel black">
-                  Kills: <%= game[:stats][:championsKilled] || 0 %>
-                  <br>
-                  Deaths: <%= game[:stats][:numDeaths] || 0 %>
-                  <br>
-                  Assists: <%= game[:stats][:assists] || 0 %>
-                  <br>
-                  Killing Sprees: <%= game[:stats][:killingSprees] || 0 %>
-                  <br>
-                  Largest Killing Spree: <%= game[:stats][:largestKillingSpree] || 0 %>
-                  <br>
-                  Largest Multi-Kill: <%= game[:stats][:largestMultiKill] || 0 %>
-                  <br>
-                  Total Damage: <%= game[:stats][:totalDamageDealt] %>
-                  <br>
-                  Total Damage Taken: <%= game[:stats][:totalDamageTaken] %>
-                  <br>
-                  Physical Damage Dealt: <%= game[:stats][:physicalDamageDealtPlayer] %>
-                  <br>
-                  Physical Damage Taken: <%= game[:stats][:physicalDamageTaken] %>
-                  <br>
-                  Magic Damage Dealt: <%= game[:stats][:magicDamageDealtPlayer] %>
-                  <br>
-                  Magic Damage Taken: <%= game[:stats][:magicDamageTaken] %>
-                  <br>
-                  True Damage Dealt: <%= game[:stats][:trueDamageDealtPlayer] %>
-                  <br>
-                  True Damage Taken: <%= game[:stats][:trueDamageTaken] %>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col s12">
-                <ul class="collection with-header">
-                  <li class="collection-header"><h4>Items</h4></li>
-                  <% item_0 = Item.find_by(item_id: game[:stats][:item0]) %>
-                  <li class="collection-item black"><%= item_0.name %> <%= image_tag(item_0.image) %> <%= item_0.description %></li>
-                  <% item_1 = Item.find_by(item_id: game[:stats][:item1]) %>
-                  <li class="collection-item black"><%= item_1.name %> <%= image_tag(item_1.image) %> <%= item_1.description %></li>
-                  <% item_2 = Item.find_by(item_id: game[:stats][:item2]) %>
-                  <li class="collection-item black"><%= item_2.name %> <%= image_tag(item_2.image) %> <%= item_2.description %></li>
-                  <% item_3 = Item.find_by(item_id: game[:stats][:item3]) %>
-                  <li class="collection-item black"><%= item_3.name %> <%= image_tag(item_3.image) %> <%= item_3.description %></li>
-                  <% item_4 = Item.find_by(item_id: game[:stats][:item4]) %>
-                  <li class="collection-item black"><%= item_4.name %> <%= image_tag(item_4.image) %> <%= item_4.description %></li>
-                  <% item_5 = Item.find_by(item_id: game[:stats][:item5]) if game[:stats][:item5] %>
-                  <li class="collection-item black"><%= item_5.name if game[:stats][:item5] %> <%= image_tag(item_5.image) if game[:stats][:item5] %> <%= item_5.description if game[:stats][:item5] %></li>
-                  <% item_6 = Item.find_by(item_id: game[:stats][:item6]) if game[:stats][:item6] %>
-                  <li class="collection-item black"><%= item_6.name if game[:stats][:item6] %> <%= image_tag(item_6.image) if game[:stats][:item6] %> <%= item_6.description if game[:stats][:item6] %></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render partial: 'game_card', collection: @presenter.recent_games, as: :game %>
