@@ -48,7 +48,7 @@ class Presenter
       info = service.single_champion_info(champion)
       champion.name = info[:name]
       champion.title = info[:title]
-      champion.image = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/#{info[:name]}_0.jpg"
+      champion.image = "http://ddragon.leagueoflegends.com/cdn/6.4.2/img/champion/#{info[:name]}.png"
       champion.save
     end
   end
