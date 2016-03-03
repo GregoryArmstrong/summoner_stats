@@ -1,7 +1,12 @@
 <div class="container-fluid center">
   <%= link_to "Logout", logout_path %>
+  <br>
+  <br>
   <% if current_user && current_user.summoner_name.nil? %>
-    <%= link_to "Add Summoner Name/Region", edit_user_path(session[:user_id]) %>
+  <br>
+  <br>
+  <br>
+    <%= link_to "Add Summoner Name/Region", edit_user_path(current_user) %>
   <% end %>
 
   <h1><%= @user.name %>'s Dashboard</h1>

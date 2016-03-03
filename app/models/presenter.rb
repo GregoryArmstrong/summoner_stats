@@ -54,6 +54,12 @@ class Presenter
       champion.title = info[:title]
       champion.image = "http://ddragon.leagueoflegends.com/cdn/6.4.2/img/champion/#{info[:name].gsub(" ", "").gsub("'", "").gsub(".", "")}.png"
       champion.save
+      info[:spells].each do |spell|
+        spell = Spell.create(name: spell[:name],
+                               description: spell[:description],
+                               image: "http://ddragon.leagueoflegends.com/cdn/6.4.2/img/spell/#{spell[:image][:full]}")
+        champion.spells << spell
+      end
     end
   end
 
