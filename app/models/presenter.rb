@@ -64,9 +64,11 @@ class Presenter
       champion.image = "assets/#{champion.name}/#{champion.name}_image.png"
       champion.save
       info[:spells].each do |spell|
+        downloaded_spell_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/spell/#{spell[:image][:full]}")
+        IO.copy_stream(downloaded_spell_image, "app/assets/images/#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png")
         spell = Spell.create(name: spell[:name],
                                description: spell[:description],
-                               image: "http://ddragon.leagueoflegends.com/cdn/6.4.2/img/spell/#{spell[:image][:full]}")
+                               image: "assets/#{champion.name}/#{spell[:name]}_image.png")
         champion.spells << spell
       end
     end
