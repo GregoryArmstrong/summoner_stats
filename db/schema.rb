@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302010055) do
+ActiveRecord::Schema.define(version: 20160303010203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20160302010055) do
     t.string   "image"
   end
 
+  create_table "spells", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "image"
+    t.integer  "champion_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "spells", ["champion_id"], name: "index_spells_on_champion_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "screen_name"
@@ -51,4 +62,5 @@ ActiveRecord::Schema.define(version: 20160302010055) do
     t.integer  "summoner_id"
   end
 
+  add_foreign_key "spells", "champions"
 end
