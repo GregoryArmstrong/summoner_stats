@@ -1,4 +1,5 @@
 <div class="container-fluid center">
+  <%= link_to "Logout", logout_path %>
   <% if current_user && current_user.summoner_name.nil? %>
     <%= link_to "Add Summoner Name/Region", edit_user_path(session[:user_id]) %>
   <% end %>
@@ -9,16 +10,18 @@
   <% if @user.summoner_name && @user.region %>
     <h3>Summoner ID: <%= @presenter.show_summoner_id %></h3>
   <% end %>
-  <div class="container">
-    <div class="card-panel kda black">
-      <div class="card-content text-match-background">
-        <h3><span class="card-title text-match-background">10 Most Recent Games' Averages</span></h3>
-        <br>
-        Kills: <%= @games_averages[:kills] %> Deaths: <%= @games_averages[:deaths] %> Assists: <%= @games_averages[:assists] %>
-        <br>
-        KDA: <%= @games_averages[:kda] %>
+  <% unless current_user && current_user.summoner_id.nil? %>
+    <div class="container">
+      <div class="card-panel-kda black">
+        <div class="card-content text-match-background">
+          <h3><span class="card-title text-match-background">10 Most Recent Games' Averages</span></h3>
+          <br>
+          Kills: <%= @games_averages[:kills] %> Deaths: <%= @games_averages[:deaths] %> Assists: <%= @games_averages[:assists] %>
+          <br>
+          KDA: <%= @games_averages[:kda] %>
+        </div>
       </div>
     </div>
-  </div>
-<br>
-<%= render partial: 'partials/game_card', collection: @games, as: :game %>
+  <br>
+  <%= render partial: 'partials/game_card', collection: @games, as: :game %>
+<% end %>

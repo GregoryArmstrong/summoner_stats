@@ -17,8 +17,10 @@ class UsersController < ApplicationController
     unless @user.summoner_name.nil? || @user.region.nil?
       @presenter = Presenter.new(@user)
     end
-    @games = @presenter.recent_games if @presenter
-    @games_averages = @presenter.recent_games_averages.averages
+    if @presenter
+      @games = @presenter.recent_games
+      @games_averages = @presenter.recent_games_averages.averages
+    end
   end
 
   def edit
@@ -28,6 +30,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
+
     redirect_to user_path(@user)
   end
 

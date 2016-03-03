@@ -7716,8 +7716,19 @@ small {
   transition: box-shadow .25s;
   margin: auto;
   padding: 5px;
-  border-radius: 2px;
+  border-radius: 5px;
   background-color: #fff;
+}
+
+.card-panel-kda {
+  transition: box-shadow .25s;
+  margin: auto;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #fff;
+  border-style: outset;
+  border-width: 5px;
+  border-color: #1182AB;
 }
 
 .card {
@@ -7727,6 +7738,9 @@ small {
   background-color: #fff;
   transition: box-shadow .25s;
   border-radius: 2px;
+  border-style: outset;
+  border-width: 5px;
+  border-color: #1182AB;
 }
 
 .card .card-title {
