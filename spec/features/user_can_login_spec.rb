@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.feature "UserCanLogin", type: :feature do
   scenario "registered user can log in" do
-    user = User.create(name: "Greg Armstrong",
-                       summoner_name: "OctopusMachine",
-                       region: "NA",
-                       password: "password"
-                       )
+    user = User.find_by(name: "Greg Armstrong")
     visit root_path
 
     click_link "Login"
@@ -17,7 +13,7 @@ RSpec.feature "UserCanLogin", type: :feature do
     fill_in "Password", with: "password"
     click_on("Login")
 
-    user = User.last
+    user.reload
 
     expect(current_path).to eq user_path(user)
     expect(page).to have_content("Greg Armstrong")
