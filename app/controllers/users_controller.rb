@@ -19,7 +19,9 @@ class UsersController < ApplicationController
     end
     if @presenter
       @games = @presenter.recent_games
-      @games_averages = @presenter.recent_games_averages.averages
+      Rails.cache.fetch("#{@games.first.game_id}", expires_in: 1.hours) do
+        @games_averages = @presenter.recent_games_averages.averages
+      end
     end
   end
 

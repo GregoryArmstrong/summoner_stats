@@ -3,7 +3,11 @@ class GameData
   attr_reader :game
 
   def initialize(game)
-    @game = game
+    @game = game  
+  end
+
+  def game_id
+    @game[:gameId]
   end
 
   def champion_id

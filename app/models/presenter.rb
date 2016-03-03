@@ -1,15 +1,21 @@
+require 'open-uri'
+
 class Presenter
 
   attr_reader :current_user
 
   def initialize(current_user)
     @current_user = current_user
-    show_summoner_id
+    if @current_user.summoner_id.nil?
+      show_summoner_id
+    end
     if (Champion.count != 129) || (Champion.where(image: nil).any?)
       all_champions
       single_champion_info
     end
-    all_items
+    if Item.count != 248
+      all_items
+    end
   end
 
   def service
@@ -52,7 +58,10 @@ class Presenter
       info = service.single_champion_info(champion)
       champion.name = info[:name]
       champion.title = info[:title]
-      champion.image = "http://ddragon.leagueoflegends.com/cdn/6.4.2/img/champion/#{info[:name].gsub(" ", "").gsub("'", "").gsub(".", "")}.png"
+      downloaded_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/champion/#{info[:name].gsub("Vel'Koz", "Velkoz").gsub("Wukong", "MonkeyKing").gsub("LeBlanc", "Leblanc").gsub("Kha'Zix", "Khazix").gsub("Fiddlesticks", "FiddleSticks").gsub("Cho'Gath", "Chogath").gsub(" ", "").gsub("'", "").gsub(".", "")}.png")
+      Dir.mkdir("app/assets/images/#{champion.name}") unless File.exists?("app/assets/images/#{champion.name}")
+      IO.copy_stream(downloaded_image, "app/assets/images/#{champion.name}/#{champion.name}_image.png")
+      champion.image = "assets/#{champion.name}/#{champion.name}_image.png"
       champion.save
       info[:spells].each do |spell|
         spell = Spell.create(name: spell[:name],
