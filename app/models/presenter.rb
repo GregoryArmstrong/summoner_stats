@@ -79,7 +79,10 @@ class Presenter
       Item.find_or_create_by(item_id: item[1][:id]) do |new_item|
         new_item.name = item[1][:name]
         new_item.description = item[1][:plaintext]
-        new_item.image = "http://ddragon.leagueoflegends.com/cdn/6.4.2/img/item/#{item[1][:id]}.png"
+        downloaded_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/item/#{item[1][:id]}.png")
+        Dir.mkdir("app/assets/images/items") unless File.exists?("app/assets/images/items")
+        IO.copy_stream(downloaded_image, "app/assets/images/items/#{item[1][:name].gsub(" ", "").gsub("'", "")}_image.png")
+        new_item.image = "assets/items/#{item[1][:name].gsub(" ", "").gsub("'", "")}_image.png"
         new_item.save
       end
     end
