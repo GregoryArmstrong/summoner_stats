@@ -41,6 +41,11 @@ h4 {
   color: #1A1F1E;
 }
 
+h6 {
+  color: #1A1F1E;
+  font-size: 24px;
+}
+
 .btn {
   background-color: #1A1F1E;
 }

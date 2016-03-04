@@ -61,14 +61,14 @@ class Presenter
       downloaded_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/champion/#{info[:name].gsub("Vel'Koz", "Velkoz").gsub("Wukong", "MonkeyKing").gsub("LeBlanc", "Leblanc").gsub("Kha'Zix", "Khazix").gsub("Fiddlesticks", "FiddleSticks").gsub("Cho'Gath", "Chogath").gsub(" ", "").gsub("'", "").gsub(".", "")}.png")
       Dir.mkdir("app/assets/images/#{champion.name}") unless File.exists?("app/assets/images/#{champion.name}")
       IO.copy_stream(downloaded_image, "app/assets/images/#{champion.name}/#{champion.name}_image.png")
-      champion.image = "assets/#{champion.name}/#{champion.name}_image.png"
+      champion.image = "#{champion.name}/#{champion.name}_image.png"
       champion.save
       info[:spells].each do |spell|
         downloaded_spell_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/spell/#{spell[:image][:full]}")
         IO.copy_stream(downloaded_spell_image, "app/assets/images/#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png")
         spell = Spell.create(name: spell[:name],
                                description: spell[:description],
-                               image: "assets/#{champion.name}/#{spell[:name]}_image.png")
+                               image: "#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png")
         champion.spells << spell
       end
     end
@@ -82,7 +82,7 @@ class Presenter
         downloaded_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/item/#{item[1][:id]}.png")
         Dir.mkdir("app/assets/images/items") unless File.exists?("app/assets/images/items")
         IO.copy_stream(downloaded_image, "app/assets/images/items/#{item[1][:name].gsub(" ", "").gsub("'", "")}_image.png")
-        new_item.image = "assets/items/#{item[1][:name].gsub(" ", "").gsub("'", "")}_image.png"
+        new_item.image = "items/#{item[1][:name].gsub(" ", "").gsub("'", "")}_image.png"
         new_item.save
       end
     end

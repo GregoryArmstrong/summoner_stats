@@ -1,29 +1,31 @@
+<% cache cache_key_for("free champion card", free_champion.name) do %>
 <li class="collection-item avatar">
   <%= image_tag(free_champion.image, class: "circle") %>
   <div class="row">
     <div class="col s2">
       <span class="title"><h3><%= free_champion.name %></h3></span>
-      <%= free_champion.title %>
+      <h6><%= free_champion.title %></h6>
     </div>
     <div class="col s3">
-      <%= free_champion.spells[3].name %>
+      <h6><%= free_champion.spells[3].name %></h6>
       <br>
       <%= image_tag(free_champion.spells[3].image) %>
     </div>
     <div class="col s2">
-      <%= free_champion.spells[2].name %>
+      <h6><%= free_champion.spells[2].name %></h6>
       <br>
       <%= image_tag(free_champion.spells[2].image) %>
     </div>
     <div class="col s3">
-      <%= free_champion.spells[1].name %>
+      <h6><%= free_champion.spells[1].name %></h6>
       <br>
       <%= image_tag(free_champion.spells[1].image) %>
     </div>
     <div class="col s2">
-      <%= free_champion.spells[0].name %>
+      <h6><%= free_champion.spells[0].name %></h6>
       <br>
       <%= image_tag(free_champion.spells[0].image) %>
     </div>
   </div>
 </li>
+<% end %>
