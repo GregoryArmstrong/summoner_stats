@@ -34,14 +34,14 @@ class Presenter
     end
   end
 
-  def recent_games
-    service.recent_games[:games].map do |game|
+  def recent_games(player)
+    service.recent_games(player)[:games].map do |game|
       GameData.new(game)
     end
   end
 
-  def recent_games_averages
-    GameDataAverage.new(recent_games)
+  def recent_games_averages(player)
+    GameDataAverage.new(recent_games(player))
   end
 
   def all_champions
@@ -85,6 +85,20 @@ class Presenter
         new_item.image = "items/#{item[1][:name].gsub(" ", "").gsub("'", "")}_image.png"
         new_item.save
       end
+    end
+  end
+
+  def master_league_players_info
+    service.master_league_players_info[:entries].map do |player|
+      new_master_player = MasterLeaguePlayer.new(player)
+    end.sort_by! { |player| player.points }.reverse[0..9]
+  end
+
+  def master_league_player_games_averages
+    master_league_players_info.map do |player|
+      sleep(1.0)
+      player.averages = recent_games_averages(player).averages
+      player
     end
   end
 

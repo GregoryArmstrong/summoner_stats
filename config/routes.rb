@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy', as: :logout
   post '/login', to: 'sessions#create'
 
-  resources :users, only: [:new, :create, :show, :update, :edit]
+  resources :users, only: [:new, :create, :show, :update, :edit] do
+    resources :master_league, only: [:index]
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :champions, only: [:index]
 

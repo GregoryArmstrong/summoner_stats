@@ -18,9 +18,10 @@ class UsersController < ApplicationController
       @presenter = Presenter.new(@user)
     end
     if @presenter
-      @games = @presenter.recent_games
-      @games_averages = @presenter.recent_games_averages.averages
+      @games = @presenter.recent_games(@user)
+      @games_averages = @presenter.recent_games_averages(@user).averages
     end
+    # MasterLeagueWorker.perform_async(@user)
   end
 
   def edit

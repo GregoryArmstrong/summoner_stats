@@ -18,8 +18,8 @@ class RiotService
     parse(connection_settings("api/lol/#{user.region.downcase}/v1.4/summoner/by-name/#{user.summoner_name}"))
   end
 
-  def recent_games
-    parse(connection_settings("api/lol/#{user.region.downcase}/v1.3/game/by-summoner/#{user.summoner_id}/recent"))
+  def recent_games(player)
+    parse(connection_settings("api/lol/#{player.region.downcase}/v1.3/game/by-summoner/#{player.summoner_id}/recent"))
   end
 
   def all_champions
@@ -36,6 +36,14 @@ class RiotService
 
   def all_items
     parse(connection_settings("api/lol/static-data/#{user.region.downcase}/v1.2/item"))
+  end
+
+  def master_league_players_info
+    parse(connection.get do |req|
+      req.url "api/lol/na/v2.5/league/master"
+      req.params['type'] = 'RANKED_SOLO_5x5'
+      req.params['api_key'] = ENV['riot_api_key']
+    end)
   end
 
   private
