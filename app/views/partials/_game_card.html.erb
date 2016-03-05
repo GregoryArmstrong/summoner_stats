@@ -1,3 +1,4 @@
+<% cache cache_key_for(GameData, game.game_id) do %>
 <div class="container center">
   <div class="card small black">
     <div class="card-image">
@@ -110,44 +111,44 @@
                 <% item_0 = game.item_0 if game.item_0 %>
                 <li class="collection-item avatar black">
                   <%= image_tag(item_0.image, class: "circle") if game.item_0 %>
-                  <span class="title"><%= item_0.name if game.item_0 %></span>
-                  <p>Description: <%= item_0.description if game.item_0 %></p>
+                  <span class="le"><%= item_0.name if game.item_0 %></span>
+                  Description: <%= item_0.description if game.item_0 %>
                 </li>
                 <% item_1 = game.item_1 if game.item_1 %>
                 <li class="collection-item avatar black">
                   <%= image_tag(item_1.image, class: "circle") if game.item_1 %>
                   <span class="title"><%= item_1.name if game.item_1 %></span>
-                  <p>Description: <%= item_1.description if game.item_1 %></p>
+                  Description: <%= item_1.description if game.item_1 %>
                 </li>
                 <% item_2 = game.item_2 if game.item_2 %>
                 <li class="collection-item avatar black">
                   <%= image_tag(item_2.image, class: "circle") if game.item_2 %>
                   <span class="title"><%= item_2.name if game.item_2 %></span>
-                  <p>Description: <%= item_2.description if game.item_2 %></p>
+                  Description: <%= item_2.description if game.item_2 %>
                 </li>
                 <% item_3 = game.item_3 if game.item_3 %>
                 <li class="collection-item avatar black">
                   <%= image_tag(item_3.image, class: "circle") if game.item_3 %>
                   <span class="title"><%= item_3.name if game.item_3 %></span>
-                  <p>Description: <%= item_3.description if game.item_3 %></p>
+                  Description: <%= item_3.description if game.item_3 %>
                 </li>
                 <% item_4 = game.item_4 if game.item_4 %>
                 <li class="collection-item avatar black">
                   <%= image_tag(item_4.image, class: "circle") if game.item_4 %>
                   <span class="title"><%= item_4.name if game.item_4 %></span>
-                  <p>Description: <%= item_4.description if game.item_4 %></p>
+                  Description: <%= item_4.description if game.item_4 %>
                 </li>
                 <% item_5 = game.item_5 if game.item_5 %>
                 <li class="collection-item avatar black">
                   <%= image_tag(item_5.image, class: "circle") if game.item_5 %>
                   <span class="title"><%= item_5.name if game.item_5 %></span>
-                  <p>Description: <%= item_5.description if game.item_5 %></p>
+                  Description: <%= item_5.description if game.item_5 %>
                 </li>
                 <% item_6 = game.item_6 if game.item_6 %>
                 <li class="collection-item avatar black">
                   <%= image_tag(item_6.image, class: "circle") if game.item_6 %>
                   <span class="title"><%= item_6.name if game.item_6 %></span>
-                  <p>Description: <%= item_6.description if game.item_6 %></p>
+                  Description: <%= item_6.description if game.item_6 %>
                 </li>
               </ul>
             </div>
@@ -157,3 +158,4 @@
     </div>
   </div>
 </div>
+<% end %>

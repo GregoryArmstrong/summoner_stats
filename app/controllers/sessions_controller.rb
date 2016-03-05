@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     else
       @user = User.find_by(name: params[:session][:name])
     end
+    binding.pry
     if @user && (@user.provider || @user.authenticate(params[:session][:password]))
       session[:user_id] ||= @user.id
       redirect_to user_path(@user)

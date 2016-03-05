@@ -8,15 +8,18 @@
   <br>
     <%= link_to "Add Summoner Name/Region", edit_user_path(current_user) %>
   <% end %>
-
-  <h1><%= @user.name %>'s Dashboard</h1>
-  <h3>Region: <%= @user.region %></h3>
-  <h3>Summoner Name: <%= @user.summoner_name %></h3>
-  <% if @user.summoner_name && @user.region %>
-    <h3>Summoner ID: <%= @presenter.show_summoner_id %></h3>
+  <% cache cache_key_for(User, @user.updated_at) do %>
+    <h1><%= @user.name %>'s Dashboard</h1>
+    <h3>Region: <%= @user.region %></h3>
+    <h3>Summoner Name: <%= @user.summoner_name %></h3>
+    <% if @user.summoner_name && @user.region %>
+      <h3>Summoner ID: <%= @presenter.show_summoner_id %></h3>
+    <% end %>
   <% end %>
   <% unless current_user && current_user.summoner_id.nil? %>
+  <% cache cache_key_for(GameDataAverage, @games.first.game_id) do %>
     <div class="container">
+      <div class="container">
       <div class="card-panel-kda black">
         <div class="card-content text-match-background">
           <h3><span class="card-title text-match-background">10 Most Recent Games' Averages</span></h3>
@@ -27,6 +30,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <% end %>
   <br>
   <%= render partial: 'partials/game_card', collection: @games, as: :game %>
 <% end %>
