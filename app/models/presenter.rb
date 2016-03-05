@@ -88,6 +88,12 @@ class Presenter
     end
   end
 
+  def first_master_league_player
+    service.master_league_players_info[:entries].map do |player|
+      [player[:playerOrTeamName], player[:leaguePoints]]
+    end.sort_by! { |player| player[1] }.reverse[0]
+  end
+
   def master_league_players_info
     service.master_league_players_info[:entries].map do |player|
       new_master_player = MasterLeaguePlayer.new(player)
