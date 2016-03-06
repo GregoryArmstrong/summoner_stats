@@ -65,7 +65,7 @@ class Presenter
       champion.save
       info[:spells].each do |spell|
         downloaded_spell_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/spell/#{spell[:image][:full]}")
-        IO.copy_stream(downloaded_spell_image, "app/assets/images/#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png")
+        IO.copy_stream(downloaded_spell_image, "app/assets/images/#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png") unless File.exists?("app/assets/images/#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png")
         spell = Spell.create(name: spell[:name],
                                description: spell[:description],
                                image: "#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png")
@@ -81,7 +81,7 @@ class Presenter
         new_item.description = item[1][:plaintext]
         downloaded_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/item/#{item[1][:id]}.png")
         Dir.mkdir("app/assets/images/items") unless File.exists?("app/assets/images/items")
-        IO.copy_stream(downloaded_image, "app/assets/images/items/#{item[1][:name].gsub(" ", "").gsub("'", "")}_image.png")
+        IO.copy_stream(downloaded_image, "app/assets/images/items/#{item[1][:name].gsub(" ", "").gsub("'", "")}_image.png") unless File.exists?("app/assets/images/items/#{item[1][:name].gsub(" ", "").gsub("'", "")}_image.png")
         new_item.image = "items/#{item[1][:name].gsub(" ", "").gsub("'", "")}_image.png"
         new_item.save
       end
