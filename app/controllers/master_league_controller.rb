@@ -13,4 +13,26 @@ class MasterLeagueController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:user_id])
+    @presenter = Presenter.new(@user)
+    @user_stats = @presenter.recent_games_averages(@user).averages
+    @pro_stats = @presenter.master_league_player_games_averages.first.averages
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title({ :text => "Stats Comparison"})
+      f.options[:xAxis][:categories] = ['Kills',
+                                        'Deaths',
+                                        'Assists',
+                                        'KDA']
+      f.series(:type => 'column', :name => "You", :data => [@user_stats[:kills],
+                                                            @user_stats[:deaths],
+                                                            @user_stats[:assists],
+                                                            @user_stats[:kda]])
+      f.series(:type => 'column', :name => "Pro", :data => [@pro_stats[:kills],
+                                                            @pro_stats[:deaths],
+                                                            @pro_stats[:assists],
+                                                            @pro_stats[:kda]])
+    end
+  end
+
 end

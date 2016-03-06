@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
 
   resources :users, only: [:new, :create, :show, :update, :edit] do
-    resources :master_league, only: [:index]
+    resources :master_league, only: [:index, :show]
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :champions, only: [:index]

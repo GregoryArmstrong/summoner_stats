@@ -28,6 +28,7 @@ gem 'pry'
 gem 'bcrypt', '~> 3.1.7'
 gem 'sidekiq'
 gem 'redis', '~>3.2'
+gem 'lazy_high_charts'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
