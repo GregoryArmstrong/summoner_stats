@@ -2,6 +2,16 @@
   <h1>Top 10 Master League Players</h1>
   <h2>Region: <%= @user.region %></h2>
 
+  <div class="container">
+    <h3>Compare Pro Statistics:</h3>
+    <%= form_for(:comparison, url: comparison_path(user_id: current_user.id)) do |f| %>
+    <div class="selection-dropdown">
+        <%= f.collection_select :summoner_name, @master_players, :summoner_name, :summoner_name, prompt: true, include_blank: true %>
+      <%= f.submit "Compare" %>
+    </div>
+    <% end %>
+  </div>
+
   <h3>Player Averages for Last 10 Games</h3>
 
   <ul class="collection">
