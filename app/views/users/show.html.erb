@@ -6,7 +6,7 @@
   <br>
   <br>
   <br>
-    <%= link_to "Add Summoner Name/Region", edit_user_path(current_user) %>
+  <%= link_to "Add Summoner Name/Region", edit_user_path(current_user) %>
   <% end %>
   <% cache cache_key_for(User, @user.updated_at) do %>
     <h1><%= @user.name %>'s Dashboard</h1>
@@ -20,18 +20,20 @@
   <% cache cache_key_for(GameDataAverage, @games.first.game_id) do %>
     <div class="container">
       <div class="container">
-      <div class="card-panel-kda black">
-        <div class="card-content text-match-background">
-          <h3><span class="card-title text-match-background">10 Most Recent Games' Averages</span></h3>
-          <br>
-          Kills: <%= @games_averages[:kills] %> Deaths: <%= @games_averages[:deaths] %> Assists: <%= @games_averages[:assists] %>
-          <br>
-          KDA: <%= @games_averages[:kda] %>
+        <div class="card-panel-kda black">
+          <div class="card-content text-match-background">
+            <h3><span class="card-title text-match-background">10 Most Recent Games' Averages</span></h3>
+            <h4 class="text-match-background">
+              <br>
+              Kills: <%= @games_averages[:kills] %> Deaths: <%= @games_averages[:deaths] %> Assists: <%= @games_averages[:assists] %>
+              <br>
+              KDA: <%= @games_averages[:kda] %>
+            </h4>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   <% end %>
   <br>
   <%= render partial: 'partials/game_card', collection: @games, as: :game %>
-<% end %>
+  <% end %>

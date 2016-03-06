@@ -111,7 +111,7 @@
                 <% item_0 = game.item_0 if game.item_0 %>
                 <li class="collection-item avatar black">
                   <%= image_tag(item_0.image, class: "circle") if game.item_0 %>
-                  <span class="le"><%= item_0.name if game.item_0 %></span>
+                  <span class="title"><%= item_0.name if game.item_0 %></span>
                   Description: <%= item_0.description if game.item_0 %>
                 </li>
                 <% item_1 = game.item_1 if game.item_1 %>

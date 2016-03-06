@@ -1,0 +1,14 @@
+<div class="container-fluid center">
+  <h1>Top 10 Master League Players</h1>
+  <h2>Region: <%= @user.region %></h2>
+
+  <h3>Player Averages for Last 10 Games</h3>
+  <ul class="collection">
+    <div class="container">
+      <% cache(cache_key_for(MasterLeaguePlayer, @master_players.first.summoner_name), :expires_in => 1.hours) do %>
+      <%= render partial: "partials/master_league_player_card", collection: @master_players, as: :master_player %>
+      <% end %>
+    </div>
+  </ul>
+  <br>
+</div>

@@ -1,0 +1,13 @@
+<% cache cache_key_for(MasterLeaguePlayer, "#{master_player.summoner_name}") do %>
+  <li class="collection-item">
+    <div class="row">
+      <span class="title"><h2><%= master_player.summoner_name %></h2></span>
+      <h6>Total Points: <%= master_player.points %></h6>
+      <h6>Kills: <%= master_player.averages[:kills] %></h6>
+      <h6>Deaths: <%= master_player.averages[:deaths] %></h6>
+      <h6>Assists: <%= master_player.averages[:assists] %></h6>
+      <h6>KDA: <%= master_player.averages[:kda] %></h6>
+    </div>
+  </li>
+  <br>
+<% end %>
