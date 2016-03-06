@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/auth/twitter/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy', as: :logout
   post '/login', to: 'sessions#create'
+  post '/users/:user_id/master_league/comparison', to: 'master_league#comparison', as: :comparison
 
   resources :users, only: [:new, :create, :show, :update, :edit] do
     resources :master_league, only: [:index]
