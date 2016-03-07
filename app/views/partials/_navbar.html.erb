@@ -1,10 +1,18 @@
 <% cache cache_key_for("NavBar", "#{current_user}") do %>
 <ul id="dropdown1" class="left dropdown-content match-navbar">
+  <li>
+    <h4>
+      <a>
+        <%= link_to "Free Champions", champions_index_path %>
+      </a>
+    </h4>
+  </li>
+  <li class="divider"></li>
   <% if current_user %>
     <li>
       <h4>
         <a>
-          <%= link_to "Logout", logout_path %>
+          <%= link_to "Dashboard", user_path(current_user) %>
         </a>
       </h4>
     </li>
@@ -16,17 +24,16 @@
         </a>
       </h4>
     </li>
+    <li class="divider"></li>
+    <li>
+      <h4>
+        <a>
+          <%= link_to "Logout", logout_path %>
+        </a>
+      </h4>
+    </li>
   <% end %>
-  <li class="divider"></li>
-  <li>
-    <h4>
-      <a>
-        <%= link_to "Free Champions", champions_index_path %>
-      </a>
-    </h4>
-  </li>
 </ul>
-
 <nav>
   <div class="nav-wrapper">
     <a href="/" class="brand-logo center"><h3>SummonerStats</h3></a>
