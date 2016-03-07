@@ -1,4 +1,9 @@
-<div class="container-fluid">
-  <h1>Stats Comparison for: <%= @pro_stats.summoner_name %> </h1>
+<div class="container-fluid center">
+  <h1>Stats Comparison for:
+    <br>
+    <%= @user.summoner_name %> Vs. <%= @pro_stats.summoner_name %>
+    <br>
+    Kills / Deaths / Assists / KDA
+  </h1>
   <%= high_chart("test", @chart) %>
 </div>

@@ -36,13 +36,13 @@
           <% end %>
         </span>
         <div class="text-match-background">
-          <div class="row">
+          <div class="row min-text-size">
             <%= game.game_type %>,
             IP Earned: <%= game.ip_earned %>
           </div>
           <div class="row">
             <div class="col s6">
-              <div class="card-panel match-background black-text">
+              <div class="card-panel match-background black-text min-text-size">
                 Max Level: <%= game.max_level %>
                 <br>
                 Creep Score: <%= game.creep_score %>
@@ -73,7 +73,7 @@
               </div>
             </div>
             <div class="col s6">
-              <div class="card-panel match-background black-text">
+              <div class="card-panel match-background black-text min-text-size">
                 Kills: <%= game.kills %>
                 <br>
                 Deaths: <%= game.deaths %>
@@ -108,48 +108,7 @@
             <div class="col s12">
               <ul class="collection with-header">
                 <li class="collection-header"><h4>Items</h4></li>
-                <% item_0 = game.item_0 if game.item_0 %>
-                <li class="collection-item avatar black">
-                  <%= image_tag(item_0.image, class: "circle") if game.item_0 %>
-                  <span class="title"><%= item_0.name if game.item_0 %></span>
-                  Description: <%= item_0.description if game.item_0 %>
-                </li>
-                <% item_1 = game.item_1 if game.item_1 %>
-                <li class="collection-item avatar black">
-                  <%= image_tag(item_1.image, class: "circle") if game.item_1 %>
-                  <span class="title"><%= item_1.name if game.item_1 %></span>
-                  Description: <%= item_1.description if game.item_1 %>
-                </li>
-                <% item_2 = game.item_2 if game.item_2 %>
-                <li class="collection-item avatar black">
-                  <%= image_tag(item_2.image, class: "circle") if game.item_2 %>
-                  <span class="title"><%= item_2.name if game.item_2 %></span>
-                  Description: <%= item_2.description if game.item_2 %>
-                </li>
-                <% item_3 = game.item_3 if game.item_3 %>
-                <li class="collection-item avatar black">
-                  <%= image_tag(item_3.image, class: "circle") if game.item_3 %>
-                  <span class="title"><%= item_3.name if game.item_3 %></span>
-                  Description: <%= item_3.description if game.item_3 %>
-                </li>
-                <% item_4 = game.item_4 if game.item_4 %>
-                <li class="collection-item avatar black">
-                  <%= image_tag(item_4.image, class: "circle") if game.item_4 %>
-                  <span class="title"><%= item_4.name if game.item_4 %></span>
-                  Description: <%= item_4.description if game.item_4 %>
-                </li>
-                <% item_5 = game.item_5 if game.item_5 %>
-                <li class="collection-item avatar black">
-                  <%= image_tag(item_5.image, class: "circle") if game.item_5 %>
-                  <span class="title"><%= item_5.name if game.item_5 %></span>
-                  Description: <%= item_5.description if game.item_5 %>
-                </li>
-                <% item_6 = game.item_6 if game.item_6 %>
-                <li class="collection-item avatar black">
-                  <%= image_tag(item_6.image, class: "circle") if game.item_6 %>
-                  <span class="title"><%= item_6.name if game.item_6 %></span>
-                  Description: <%= item_6.description if game.item_6 %>
-                </li>
+                  <%= render partial: "partials/item_collection_row", collection: game.items, as: :item %>
               </ul>
             </div>
           </div>

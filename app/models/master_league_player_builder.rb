@@ -15,26 +15,38 @@ class MasterLeaguePlayerBuilder
   end
 
   def recent_games(player)
-    service.recent_games(player)[:games].map do |game|
-      GameData.new(game)
+    Rails.cache.fetch("#{player.summoner_name}-recent-games",
+                      expires_in: 1.hours) do
+      service.recent_games(player)[:games].map do |game|
+        GameData.new(game)
+      end
     end
   end
 
   def recent_games_averages(player)
-    GameDataAverage.new(recent_games(player))
+    Rails.cache.fetch("#{player.summoner_name}-recent-games-averages",
+                      expires_in: 1.hours) do
+      GameDataAverage.new(recent_games(player))
+    end
   end
 
   def master_league_players_info
-    service.master_league_players_info[:entries].map do |player|
-      new_master_player = MasterLeaguePlayer.new(player)
-    end.sort_by! { |player| player.points }.reverse[0..9]
+    Rails.cache.fetch("master-league-players-info",
+                      expires_in: 1.hours) do
+      service.master_league_players_info[:entries].map do |player|
+        new_master_player = MasterLeaguePlayer.new(player)
+      end.sort_by! { |player| player.points }.reverse[0..9]
+    end
   end
 
   def master_league_player_games_averages
-    master_league_players_info.map do |player|
-      sleep(1.0)
-      player.averages = recent_games_averages(player).averages
-      player
+    Rails.cache.fetch("master-league-player-games-averages",
+                      expires_in: 1.hours) do
+      master_league_players_info.map do |player|
+        sleep(1.0)
+        player.averages = recent_games_averages(player).averages
+        player
+      end
     end
   end
 

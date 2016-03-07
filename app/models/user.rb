@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def summoner_name_and_region_absent?
+    summoner_name.nil? || region.nil?
+  end
+
 end
