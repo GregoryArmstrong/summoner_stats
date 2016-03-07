@@ -22,7 +22,6 @@ class MasterLeagueController < ApplicationController
 
   def create_kda_graph_chart(user, user_stats, pro_stats)
     LazyHighCharts::HighChart.new('graph') do |f|
-      f.title({ :text => "KDA Stats Comparison"})
       f.options[:xAxis][:categories] = ['Kills',
                                         'Deaths',
                                         'Assists',
