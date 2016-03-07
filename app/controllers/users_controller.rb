@@ -5,12 +5,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.create(user_params)
+    @user = User.create(user_params)
 
-    session[:user_id] = user.id
+    session[:user_id] = @user.id
     flash[:success] = "Account Created"
-    Presenter.new(user).show_summoner_id
-    redirect_to user_path(user)
+    Presenter.new(@user).show_summoner_id
+    MasterLeagueWorker.perform_async(@user.id)
+    redirect_to user_path(@user)
   end
 
   def show
@@ -22,7 +23,6 @@ class UsersController < ApplicationController
       @games = @presenter.recent_games(@user)
       @games_averages = @presenter.recent_games_averages(@user).averages
     end
-    # MasterLeagueWorker.perform_async(@user)
   end
 
   def edit

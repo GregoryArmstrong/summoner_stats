@@ -1,15 +1,14 @@
 class MasterLeagueController < ApplicationController
 
+  before_action :master_league_players_check
+
   def index
     @user = User.find(params[:user_id])
     unless @user.summoner_name.nil? || @user.region.nil?
       @presenter = Presenter.new(@user)
     end
     if @presenter
-      @master_players = Rails.cache.fetch("#{@presenter.first_master_league_player}",
-                        expires_in: 1.hours) do
-        @presenter.master_league_player_games_averages
-      end
+      @master_players = Rails.cache.read("10_master_player_games_averages")
     end
   end
 
@@ -17,7 +16,7 @@ class MasterLeagueController < ApplicationController
     @user = User.find(params[:user_id])
     @presenter = Presenter.new(@user)
     @user_stats = @presenter.recent_games_averages(@user).averages
-    @pro_stats = @presenter.master_league_player_games_averages.select { |player| player.summoner_name == params[:comparison][:summoner_name]}.first
+    @pro_stats = Rails.cache.read("10_master_player_games_averages").select { |player| player.summoner_name == params[:comparison][:summoner_name]}.first
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title({ :text => "Stats Comparison"})
       f.options[:xAxis][:categories] = ['Kills',
@@ -34,5 +33,14 @@ class MasterLeagueController < ApplicationController
                                                                                     @pro_stats.averages[:kda]])
     end
   end
+
+  private
+
+  def master_league_players_check
+    unless Rails.cache.read("10_master_player_games_averages")
+      MasterLeagueWorker.perform_async(session[:user_id])
+    end
+  end
+
 
 end

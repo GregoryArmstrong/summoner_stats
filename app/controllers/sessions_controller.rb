@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
     end
     if @user && (@user.provider || @user.authenticate(params[:session][:password]))
       session[:user_id] ||= @user.id
+      MasterLeagueWorker.perform_async(@user.id)
       redirect_to user_path(@user)
     else
       redirect_to root_path
