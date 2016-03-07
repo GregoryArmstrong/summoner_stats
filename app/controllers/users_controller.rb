@@ -16,9 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    unless @user.summoner_name.nil? || @user.region.nil?
-      @presenter = Presenter.new(@user)
-    end
+    @presenter = Presenter.new(@user) unless @user.summoner_name_and_region_absent?
     if @presenter
       @games = @presenter.recent_games(@user)
       @games_averages = @presenter.recent_games_averages(@user).averages

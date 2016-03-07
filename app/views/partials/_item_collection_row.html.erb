@@ -1,0 +1,8 @@
+<% cache cache_key_for("collection-item-#{item.name}") do %>
+  <li class="collection-item avatar black min-text-size">
+    <%= image_tag(item.image, class: "circle") %>
+    <span class="min-text-size"><%= item.name %></span>
+    <br>
+    Description: <%= item.description %>
+  </li>
+<% end %>

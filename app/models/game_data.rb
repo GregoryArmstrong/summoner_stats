@@ -3,7 +3,7 @@ class GameData
   attr_reader :game
 
   def initialize(game)
-    @game = game  
+    @game = game
   end
 
   def game_id
@@ -180,6 +180,10 @@ class GameData
 
   def item_6
     Item.find_by(item_id: @game[:stats][:item6])
+  end
+
+  def items
+    [item_0, item_1, item_2, item_3, item_4, item_5, item_6].compact
   end
 
 end
