@@ -1,5 +1,7 @@
 class MasterLeagueController < ApplicationController
 
+  before_action :master_league_players_check
+
   def index
     @user = User.find(params[:user_id])
     unless @user.summoner_name.nil? || @user.region.nil?
@@ -31,5 +33,14 @@ class MasterLeagueController < ApplicationController
                                                                                     @pro_stats.averages[:kda]])
     end
   end
+
+  private
+
+  def master_league_players_check
+    unless Rails.cache.read("10_master_player_games_averages")
+      MasterLeagueWorker.perform_async(session[:user_id])
+    end
+  end
+
 
 end
