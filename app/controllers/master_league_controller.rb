@@ -6,10 +6,7 @@ class MasterLeagueController < ApplicationController
       @presenter = Presenter.new(@user)
     end
     if @presenter
-      @master_players = Rails.cache.fetch("#{@presenter.first_master_league_player}",
-                        expires_in: 1.hours) do
-        @presenter.master_league_player_games_averages
-      end
+      @master_players = Rails.cache.read("10_master_player_games_averages")
     end
   end
 

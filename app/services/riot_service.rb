@@ -1,17 +1,19 @@
 require 'net/http'
 require 'json'
+require 'faraday'
 
 class RiotService
 
   attr_reader :user, :connection
 
   def initialize(user)
-    @connection = Faraday.new(url: "https://#{user.region.downcase}.api.pvp.net" ) do |faraday|
+    @user = User.find(user) if user.class == Fixnum
+    @user = user if user.class == User
+    @connection = Faraday.new(url: "https://#{@user.region.downcase}.api.pvp.net" ) do |faraday|
       faraday.request :url_encoded
       faraday.response :logger
       faraday.adapter Faraday.default_adapter
     end
-    @user = user
   end
 
   def summoner_id
