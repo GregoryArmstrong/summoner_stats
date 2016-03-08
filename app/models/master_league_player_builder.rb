@@ -35,7 +35,7 @@ class MasterLeaguePlayerBuilder
                       expires_in: 1.hours) do
       service.master_league_players_info[:entries].map do |player|
         new_master_player = MasterLeaguePlayer.new(player)
-      end.sort_by! { |player| player.points }.reverse[0..9]
+      end.sort_by! { |player| player.points }.reverse[0..9].sort
     end
   end
 

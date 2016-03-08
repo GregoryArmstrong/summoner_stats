@@ -86,3 +86,8 @@ h6 {
   color: #E3DFBA;
   font-size: 50px;
 }
+
+.free-champs {
+  max-width: 90vw;
+  margin: auto;
+}

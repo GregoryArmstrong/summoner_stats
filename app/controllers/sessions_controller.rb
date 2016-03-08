@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     else
       @user = User.find_by(name: params[:session][:name])
     end
-    if @user && (@user.provider || @user.authenticate(params[:session][:password]))
+    if @user
       session[:user_id] ||= @user.id
       MasterLeagueWorker.perform_async(@user.id)
       redirect_to user_path(@user)
