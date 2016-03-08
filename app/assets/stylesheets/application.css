@@ -35,6 +35,7 @@ h2 {
 
 h3 {
   color: #1A1F1E;
+  font-size: 55px;
 }
 
 h4 {
@@ -68,4 +69,25 @@ h6 {
 
 .min-text-size {
   font-size: 20px;
+}
+
+.chart {
+  border: 5px outset #1182AB;
+  background-color: #1182AB;
+  padding: 20px;
+}
+
+.charts-versus {
+  border: 5px outset #1182AB;
+  background-color: #1182AB;
+  padding: 30px;
+  max-width: 45vw;
+  margin: auto;
+  color: #E3DFBA;
+  font-size: 50px;
+}
+
+.free-champs {
+  max-width: 90vw;
+  margin: auto;
 }

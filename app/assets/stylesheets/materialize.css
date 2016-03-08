@@ -7392,6 +7392,7 @@ nav .brand-logo.right {
 
 nav ul {
   margin: 0;
+  font-size: 25px;
 }
 
 nav ul li {
@@ -7406,7 +7407,7 @@ nav ul li.active {
 
 nav ul a {
   transition: background-color .3s;
-  font-size: 1rem;
+  font-size: 25px;
   color: #E3DFBA;
   display: block;
   padding: 0 15px;
@@ -7474,7 +7475,7 @@ nav .input-field label.active {
 
 @media only screen and (min-width: 601px) {
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-    height: 64px;
+    height: 100px;
     line-height: 64px;
   }
   .navbar-fixed {
@@ -8226,7 +8227,7 @@ button.btn-floating {
   color: rgba(0, 0, 0, 0.87);
   cursor: pointer;
   min-height: 50px;
-  line-height: 1.5rem;
+  line-height: 100px;
   width: 100%;
   text-align: left;
   text-transform: none;

@@ -1,9 +1,45 @@
 <div class="container-fluid center">
-  <h1>Stats Comparison for:
-    <br>
+  <h1>Recent Games Stats Comparison</h1>
+  <div class="charts-versus">
     <%= @user.summoner_name %> Vs. <%= @pro_stats.summoner_name %>
-    <br>
-    Kills / Deaths / Assists / KDA
-  </h1>
-  <%= high_chart("test", @chart) %>
+  </div>
+  <div class="row">
+    <div class="col s4">
+      <h3><i class="medium material-icons">my_location</i> KDA</h3>
+      <div class="chart">
+        <%= high_chart("kda_chart", @kda_chart) %>
+      </div>
+    </div>
+    <div class="col s4">
+      <h3><i class="medium material-icons">trending_up</i> Creep Score</h3>
+      <div class="chart">
+        <%= high_chart("creep_chart", @creep_chart) %>
+      </div>
+    </div>
+    <div class="col s4">
+      <h3><i class="medium material-icons">location_on</i> Wards</h3>
+      <div class="chart">
+        <%= high_chart("ward_chart", @ward_chart) %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <div class="row">
+    <h3><i class="medium material-icons">supervisor_account</i> Champions Played</h3>
+    <div class="col s6">
+      <h4><i class="medium material-icons">perm_identity</i> <%= @user.summoner_name %></h4>
+      <% champions = @user_stats[:champions_ids].to_a %>
+      <div class="chart">
+        <%= high_chart("user_pie", @user_pie_chart) %>
+      </div>
+    </div>
+    <div class="col s6">
+      <h4><i class="medium material-icons">perm_identity</i> <%= @pro_stats.summoner_name %></h4>
+        <% champions = @pro_stats.averages[:champions_ids].to_a %>
+        <div class="chart">
+          <%= high_chart("pro_pie", @pro_pie_chart) %>
+        </div>
+    </div>
+  </div>
 </div>
