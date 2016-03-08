@@ -44,7 +44,8 @@ class MasterLeaguePlayerBuilder
                       expires_in: 1.hours) do
       master_league_players_info.map do |player|
         sleep(1.0)
-        player.averages = recent_games_averages(player).averages
+        player.averages = GameDataAverage.new(recent_games(player))
+        player.save
         player
       end
     end

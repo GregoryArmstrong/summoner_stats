@@ -90,31 +90,31 @@ class Presenter
     end
   end
 
-  def first_master_league_player
-    service.master_league_players_info[:entries].map do |player|
-      [player[:playerOrTeamName], player[:leaguePoints]]
-    end.sort_by! { |player| player[1] }.reverse[0]
-  end
-
-  def master_league_players_info
-    Rails.cache.fetch("master-league-players-info",
-                      expires_in: 1.hours) do
-      service.master_league_players_info[:entries].map do |player|
-        new_master_player = MasterLeaguePlayer.new(player)
-      end.sort_by! { |player| player.points }.reverse[0..9]
-    end
-  end
-
-  def master_league_player_games_averages
-    Rails.cache.fetch("master-league-player-games-averages",
-                      expires_in: 1.hours) do
-      master_league_players_info.map do |player|
-        sleep(1.0)
-        player.averages = recent_games_averages(player).averages
-        player
-      end
-    end
-  end
+  # def first_master_league_player
+  #   service.master_league_players_info[:entries].map do |player|
+  #     [player[:playerOrTeamName], player[:leaguePoints]]
+  #   end.sort_by! { |player| player[1] }.reverse[0]
+  # end
+  #
+  # def master_league_players_info
+  #   Rails.cache.fetch("master-league-players-info",
+  #                     expires_in: 1.hours) do
+  #     service.master_league_players_info[:entries].map do |player|
+  #       new_master_player = MasterLeaguePlayer.new(player)
+  #     end.sort_by! { |player| player.points }.reverse[0..9]
+  #   end
+  # end
+  #
+  # def master_league_player_games_averages
+  #   Rails.cache.fetch("master-league-player-games-averages",
+  #                     expires_in: 1.hours) do
+  #     master_league_players_info.map do |player|
+  #       sleep(1.0)
+  #       player.averages = recent_games_averages(player).averages
+  #       player
+  #     end
+  #   end
+  # end
 
   private
 
