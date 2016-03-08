@@ -1,7 +1,5 @@
 <div class="container-fluid center">
   <br>
-  <br>
-  <br>
   <% if current_user && current_user.summoner_name.nil? %>
     <%= link_to "Add Summoner Name/Region", edit_user_path(current_user) %>
   <% end %>

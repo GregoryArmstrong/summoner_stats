@@ -63,7 +63,7 @@ class MasterLeagueController < ApplicationController
                :data => [user_stats[:creep_scores]])
       f.series(:type => 'column',
                :name => "#{pro_stats.summoner_name}",
-               :data => [user_stats[:creep_scores]])
+               :data => [pro_stats.averages[:creep_scores]])
     end
   end
 

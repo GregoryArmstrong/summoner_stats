@@ -1,36 +1,36 @@
 <% cache cache_key_for("NavBar", "#{current_user}") do %>
 <ul id="dropdown1" class="left dropdown-content match-navbar">
   <li>
-    <h4>
+    <h3>
       <a>
         <%= link_to "Free Champions", champions_index_path %>
       </a>
-    </h4>
+    </h3>
   </li>
   <li class="divider"></li>
   <% if current_user %>
     <li>
-      <h4>
+      <h3>
         <a>
           <%= link_to "Dashboard", user_path(current_user) %>
         </a>
-      </h4>
+      </h3>
     </li>
     <li class="divider"></li>
     <li>
-      <h4>
+      <h3>
         <a>
           <%= link_to "Master League Players", user_master_league_index_path(user_id: current_user.id) %>
         </a>
-      </h4>
+      </h3>
     </li>
     <li class="divider"></li>
     <li>
-      <h4>
+      <h3>
         <a>
           <%= link_to "Logout", logout_path %>
         </a>
-      </h4>
+      </h3>
     </li>
   <% end %>
 </ul>
