@@ -1,4 +1,6 @@
+<% cache cache_key_for("frequent_champ", "#{champion[0].name}-#{champion[1]}") do %>
 <li class="collection-item avatar black min-text-size text-match-background">
   <span class="min-text-size"><%= image_tag(champion[0].image, class: "circle") %> <%= champion[0].name %></span>
   Times Played: <%= champion[1] %>
 </li>
+<% end %>

@@ -1,29 +1,36 @@
 <div class="container-fluid center">
-  <h1>Stats Comparison for:
+  <h1>Stats Comparison for:</h1>
+    <h3><%= @user.summoner_name %> Vs. <%= @pro_stats.summoner_name %></h3>
     <br>
-    <%= @user.summoner_name %> Vs. <%= @pro_stats.summoner_name %>
     <br>
-    Kills / Deaths / Assists / KDA
-  </h1>
+    <h2>Kills / Deaths / Assists / KDA</h2>
   <%= high_chart("kda_chart", @kda_chart) %>
   <br>
-  <%= high_chart("other_chart", @other_chart) %>
+  <h2>Wards</h2>
+  <%= high_chart("ward_chart", @ward_chart) %>
   <br>
+  <h2>Creep Score</h2>
+  <%= high_chart("creep_chart", @creep_chart) %>
   <div class="container-fluid center">
     <div class="row">
       <div class="col s6">
         <h1><%= @user.summoner_name %></h1>
+        <h3>Champions Played</h3>
         <ul class="collection">
           <% champions = @user_stats[:champions_ids].to_a %>
-          <%= render partial: "partials/frequent_champion_card", collection: champions, as: :champion %>
+          <div class="chart">
+            <%= high_chart("user_pie", @user_pie_chart) %>
+          </div>
         </ul>
       </div>
       <div class="col s6">
         <h1><%= @pro_stats.summoner_name %></h1>
+        <h3>Champions Played</h3>
         <ul class="collection">
-          <%= binding.pry %>
           <% champions = @pro_stats.averages[:champions_ids].to_a %>
-          <%= render partial: "partials/frequent_champion_card", collection: champions, as: :champion %>
+          <div class="chart">
+            <%= high_chart("pro_pie", @pro_pie_chart) %>
+          </div>
         </ul>
       </div>
     </div>
