@@ -6,9 +6,7 @@ class MasterLeagueController < ApplicationController
     @user = User.find(params[:user_id])
     @presenter = Presenter.new(@user) unless @user.summoner_name_and_region_absent?
     if @presenter
-      @master_players = Rails.cache.fetch("10_master_player_games_averages", expires_in: 1.hours) do
-        MasterLeaguePlayerBuilder.new(@user.id).master_league_player_games_averages
-      end
+      @master_players = Rails.cache.read("10_master_player_games_averages")
     end
   end
 
