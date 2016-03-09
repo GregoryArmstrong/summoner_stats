@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
     if @user
       session[:user_id] ||= @user.id
       MasterLeagueWorker.perform_async(@user.id)
+      flash[:notice] = "Add Summoner Name / Region" if @user.summoner_name_and_region_absent?
       redirect_to user_path(@user)
     else
       redirect_to root_path

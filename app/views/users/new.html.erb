@@ -1,23 +1,24 @@
 <% regions = ["NA", "BR", "EUNE", "EUW", "KR", "LAN", "LAS", "OCE", "RU", "TR"] %>
+<br>
 <div class="container-fluid center">
-  <div class="container">
+  <div class="container chart">
     <%= form_for(@user) do |f| %>
-      <%= f.label :name %>
+      <%= f.label :name, class: "black-text min-text-size"%>
       <%= f.text_field :name %>
 
-      <%= f.label :summoner_name, "Summoner Name" %>
+      <%= f.label :summoner_name, "Summoner Name", class: "black-text min-text-size" %>
       <%= f.text_field :summoner_name %>
 
-      <%= f.label :region, regions.each { |region| region }.join(", ") %>
+      <%= f.label :region, regions.each { |region| region }.join(", "), class: "black-text min-text-size" %>
       <%= f.text_field :region %>
 
-      <%= f.label :password %>
+      <%= f.label :password, class: "black-text min-text-size" %>
       <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Password Confirmation" %>
+      <%= f.label :password_confirmation, "Password Confirmation", class: "black-text min-text-size" %>
       <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Create Account" %>
+      <%= f.submit "Create Account", class: "min-text-size" %>
     <% end %>
   </div>
 </div>
