@@ -77,11 +77,11 @@ test:
 #
 production:
   <<: *default
-  adapter: postgresql
-  host: <%= ENV['DATABASE_URL'] %>
   database: summoner_stats_production
-  url: <%= ENV['DATABASE_URL'] %>
-  username: gregoryarmstrong
+  # host: <%= ENV['HOST'] %>
+  # database: <%= ENV['DATABASE'] %>
+  # url: <%= ENV['DATABASE_URL'] %>
+  # username: <%= ENV['user'] %>
 
   # username: summoner_stats
   # password: <%= ENV['SUMMONER_STATS_DATABASE_PASSWORD'] %>
