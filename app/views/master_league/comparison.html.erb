@@ -29,17 +29,40 @@
     <h3><i class="medium material-icons">supervisor_account</i> Champions Played</h3>
     <div class="col s6">
       <h4><i class="medium material-icons">perm_identity</i> <%= @user.summoner_name %></h4>
-      <% champions = @user_stats[:champions_ids].to_a %>
       <div class="chart">
         <%= high_chart("user_pie", @user_pie_chart) %>
       </div>
     </div>
     <div class="col s6">
       <h4><i class="medium material-icons">perm_identity</i> <%= @pro_stats.summoner_name %></h4>
-        <% champions = @pro_stats.averages[:champions_ids].to_a %>
         <div class="chart">
           <%= high_chart("pro_pie", @pro_pie_chart) %>
         </div>
     </div>
   </div>
+  <br>
+  <br>
+  <div class="row">
+    <h3><i class="medium material-icons">swap_vert</i> Lanes</h3>
+    <div class="col s6">
+      <h4><i class="medium material-icons">perm_identity</i> <%= @user.summoner_name %></h4>
+      <div class="chart">
+        <%= high_chart("user_lane_pie", @user_lane_pie_chart) %>
+      </div>
+    </div>
+    <div class="col s6">
+      <h4><i class="medium material-icons">perm_identity</i> <%= @pro_stats.summoner_name %></h4>
+      <div class="chart">
+        <%= high_chart("pro_lane_pie", @pro_lane_pie_chart) %>
+      </div>
+    </div>
+  </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

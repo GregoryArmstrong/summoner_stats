@@ -186,4 +186,8 @@ class GameData
     [item_0, item_1, item_2, item_3, item_4, item_5, item_6].compact
   end
 
+  def lane
+    @game[:stats][:playerPosition]
+  end
+
 end

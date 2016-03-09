@@ -20,14 +20,47 @@ class MasterLeagueController < ApplicationController
     @creep_chart = create_creep_score_graph_chart(@user, @user_stats, @pro_stats)
     @user_pie_chart = champions_pie_chart(@user_stats)
     @pro_pie_chart = champions_pie_chart(@pro_stats.averages)
+    @user_lane_pie_chart = lanes_pie_chart(@user_stats)
+    @pro_lane_pie_chart = lanes_pie_chart(@pro_stats.averages)
   end
 
   private
 
+  def lanes_arrays(lanes_info)
+    total_games = lanes_info.values.reduce(:+)
+    lanes_info.map do |lane, games|
+      [lane, ((games.to_f / total_games.to_f)*100).round(2)]
+    end
+  end
+
+  def lanes_pie_chart(stats)
+    LazyHighCharts::HighChart.new('pie') do |f|
+      f.chart({:defaultSeriesType => 'pie'})
+      series = { :type => 'pie',
+                 :name => "Percent Played",
+                 :data => lanes_arrays(stats[:lanes])
+                }
+      f.series(series)
+      f.legend(:layout => 'vertical',
+               :style => {:left => 'auto',
+                          :bottom => 'auto',
+                          :right => '50px',
+                          :top => '100px'})
+      f.plot_options(:pie => {:allowPointSelect => true,
+                              :cursor => 'pointer',
+                              :dataLabels => {:enabled => true,
+                                              :color => 'black',
+                                              :style => {:fontSize => '25px'}
+                                              }
+                             }
+                    )
+    end
+  end
+
   def champions_arrays(champions_info)
     total_games = champions_info.values.reduce(:+)
     champions_info.map do |champion|
-      [champion[0][:name], (champion[1].to_f / total_games.to_f)*100]
+      [champion[0][:name], ((champion[1].to_f / total_games.to_f)*100).round(2)]
     end
   end
 
