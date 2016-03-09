@@ -1,6 +1,5 @@
 require 'net/http'
 require 'json'
-# require 'faraday'
 
 class RiotService
 
