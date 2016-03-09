@@ -91,3 +91,47 @@ h6 {
   max-width: 90vw;
   margin: auto;
 }
+
+.background-lower-image {
+  position: absolute;
+	max-width: 100vw;
+  bottom: 0%;
+	left: 0%;
+}
+
+.background-lower-image-float {
+  position: relative;
+  max-width: 100vw;
+  bottom: -10px;
+  left: 0%;
+}
+
+.heimer-poro {
+  position: fixed;
+  height: 350px;
+  width: 350px;
+  bottom: -5vh;
+  left: 0vw;
+}
+
+.braum-poro {
+  position: fixed;
+  height: 350px;
+  width: 350px;
+  bottom: -5vh;
+  left: 39vw;
+}
+
+.draven-poro {
+  position: fixed;
+  height: 350px;
+  width: 350px;
+  bottom: -5vh;
+  right: 0vw;
+}
+
+.random-poro {
+  position: fixed;
+  bottom: 0vh;
+  right: 0%;
+}
