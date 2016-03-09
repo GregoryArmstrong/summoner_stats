@@ -30,6 +30,8 @@ gem 'sidekiq'
 gem 'skylight'
 gem 'lazy_high_charts'
 gem 'rails_12factor'
+gem 'faraday'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -44,7 +46,6 @@ group :development, :test do
   gem 'simplecov'
   gem 'capybara'
   gem 'launchy'
-  gem 'faraday'
   gem 'database_cleaner'
 
 end
