@@ -23,6 +23,8 @@ default: &default
 
 development:
   <<: *default
+  host: localhost
+  username: user
   database: summoner_stats_development
 
   # The specified database role being used to connect to postgres.
