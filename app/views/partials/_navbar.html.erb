@@ -10,7 +10,7 @@
     </ul>
     <ul class="left hide-on-med-and-down" id="nav-mobile">
       <li><h3><a><%= link_to "Free Champions", champions_index_path %></a></h3></li>
-      <% if current_user %>
+      <% if current_user && Rails.cache.read("10_master_player_games_averages") %>
         <li><h3><a><%= link_to "Master League Players", user_master_league_index_path(user_id: current_user.id) %></a></h3></li>
       <% end %>
     </ul>
