@@ -9,7 +9,13 @@
 <body>
   <%= render partial: "partials/navbar" %>
   <%  flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <div class="center">
+      <div class="col 12">
+        <div class="card-panel red">
+          <h3><span><%= content_tag :div, msg, :id => "flash_#{name}" %></span></h3>
+        </div>
+      </div>
+    </div>
   <% end %>
 
   <%= yield %>
