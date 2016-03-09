@@ -13,13 +13,13 @@
   <% end %>
 
   <%= yield %>
-  <% poros = ["amumu_poro.png", "corki_poro.png", "dr_mundo_poro.png", "draven_poro.png",
-              "jinx_poro.png", "karthus_poro.png", "lee_sin_poro.png", "nasus_poro.png",
-              "nidalee_poro.png", "rengar_poro.png", "shaco_poro.png", "taric_poro.png",
-              "teemo_poro.png", "tf_poro.png", "vi_poro.png", "xin_poro.png"] %>
+  <% poros = ["amumu_poro.png", "corki_poro.png", "dr_mundo_poro.png", "jinx_poro.png",
+              "karthus_poro.png", "lee_sin_poro.png", "nasus_poro.png", "nidalee_poro.png",
+              "rengar_poro.png", "shaco_poro.png", "taric_poro.png", "teemo_poro.png",
+              "tf_poro.png", "vi_poro.png", "xin_poro.png"] %>
   <% chosen_poro = poros.shuffle[0] %>
   <%= image_tag(chosen_poro, width: "200px", height: "200px", class: "random-poro") unless params[:controller] == "welcome" %>
-  
+
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>
