@@ -31,7 +31,7 @@ gem 'skylight'
 gem 'lazy_high_charts'
 gem 'rails_12factor'
 gem 'faraday'
-
+gem 'dalli'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
