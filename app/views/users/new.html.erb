@@ -1,18 +1,23 @@
-<%= form_for(@user) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<% regions = ["NA", "BR", "EUNE", "EUW", "KR", "LAN", "LAS", "OCE", "RU", "TR"] %>
+<div class="container-fluid center">
+  <div class="container">
+    <%= form_for(@user) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
 
-  <%= f.label :summoner_name, "Summoner Name" %>
-  <%= f.text_field :summoner_name %>
+      <%= f.label :summoner_name, "Summoner Name" %>
+      <%= f.text_field :summoner_name %>
 
-  <%= f.label :region %>
-  <%= f.text_field :region %>
+      <%= f.label :region, regions.each { |region| region }.join(", ") %>
+      <%= f.text_field :region %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
 
-  <%= f.label :password_confirmation, "Password Confirmation" %>
-  <%= f.password_field :password_confirmation %>
+      <%= f.label :password_confirmation, "Password Confirmation" %>
+      <%= f.password_field :password_confirmation %>
 
-  <%= f.submit "Create Account" %>
-<% end %>
+      <%= f.submit "Create Account" %>
+    <% end %>
+  </div>
+</div>
