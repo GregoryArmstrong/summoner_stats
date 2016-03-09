@@ -78,7 +78,7 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  host: localhost
+  host: <%= ENV['DATABASE_URL'] %>
   database: summoner_stats_production
   url: <%= ENV['DATABASE_URL'] %>
   username: gregoryarmstrong
