@@ -1,9 +1,14 @@
-<%= form_for(:session, url: login_path) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<br>
+<div class="container-fluid center">
+  <div class="container chart">
+    <%= form_for(:session, url: login_path) do |f| %>
+      <%= f.label :name, class: "black-text min-text-size" %>
+      <%= f.text_field :name %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+      <%= f.label :password, class: "black-text min-text-size" %>
+      <%= f.password_field :password %>
 
-  <%= f.submit "Login" %>
-<% end %>
+      <%= f.submit "Login", class: "btn black" %>
+    <% end %>
+  </div>
+</div>

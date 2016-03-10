@@ -11,7 +11,9 @@
       <h3>Summoner ID: <%= @presenter.show_summoner_id %></h3>
     <% end %>
   <% end %>
-  <%= button_to "Renew Game Data", clear_cache_path, params: {id: @games.first.game_id, user: @user}, class: "btn" %>
+  <% if @games %>
+    <%= button_to "Renew Game Data", clear_cache_path, params: {id: @games.first.game_id, user: @user}, class: "btn" %>
+  <% end %>
   <br>
   <% unless current_user && current_user.summoner_id.nil? %>
   <% cache cache_key_for(GameDataAverage, @games.first.game_id) do %>

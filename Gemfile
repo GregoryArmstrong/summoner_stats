@@ -32,7 +32,7 @@ gem 'lazy_high_charts'
 gem 'rails_12factor'
 gem 'faraday'
 gem 'dalli'
-
+gem 'webmock', group: :test
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -47,6 +47,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'vcr'
+
 
 end
 
