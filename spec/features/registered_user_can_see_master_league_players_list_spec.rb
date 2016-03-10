@@ -24,7 +24,7 @@ RSpec.feature "RegisteredUserCanSeeMasterLeaguePlayersList", type: :feature do
       expect(page).to have_content("45949943")
       expect(page).to_not have_content("Master League Players")
 
-      sleep(20)
+      sleep(25)
 
       visit user_path(user)
 

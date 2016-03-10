@@ -6,7 +6,6 @@ RSpec.describe RiotService, :type => :model do
                            summoner_name: "OctopusMachine",
                            region: "NA",
                            password: "pass")
-                           binding.pry
 
         expect(user.summoner_id).to eq nil
 
