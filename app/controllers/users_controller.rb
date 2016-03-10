@@ -7,11 +7,16 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
 
-    session[:user_id] = @user.id
-    flash[:success] = "Account Created"
-    Presenter.new(@user).show_summoner_id
-    MasterLeagueWorker.perform_async(@user.id)
-    redirect_to user_path(@user)
+    if @user.valid?
+      session[:user_id] = @user.id
+      flash[:success] = "Account Created"
+      Presenter.new(@user).show_summoner_id
+      MasterLeagueWorker.perform_async(@user.id)
+      redirect_to user_path(@user)
+    else
+      flash[:notice] = "Invalid User"
+      redirect_to root_path
+    end
   end
 
   def show
