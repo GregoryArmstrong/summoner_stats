@@ -9,7 +9,7 @@
       <%= f.label :summoner_name, "Summoner Name", class: "black-text min-text-size" %>
       <%= f.text_field :summoner_name %>
 
-      <%= f.label :region, regions.each { |region| region }.join(", "), class: "black-text min-text-size" %>
+      <%= f.label :region, "Regions: #{regions.each { |region| region }.join(", ")}", class: "black-text min-text-size" %>
       <%= f.text_field :region %>
 
       <%= f.label :password, class: "black-text min-text-size" %>
