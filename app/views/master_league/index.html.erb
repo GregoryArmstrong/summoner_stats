@@ -6,9 +6,8 @@
     <h3>Compare Pro Statistics:</h3>
     <%= form_for(:comparison, url: comparison_path(user_id: current_user.id)) do |f| %>
     <div class="selection-dropdown">
-        <%= f.label :player %>
         <%= f.collection_select :summoner_name, @master_players, :summoner_name, :summoner_name, prompt: true, include_blank: true %>
-      <%= f.submit "Compare" %>
+      <%= f.submit "Compare", class: "btn black" %>
     </div>
     <% end %>
   </div>

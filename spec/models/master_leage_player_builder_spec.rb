@@ -9,7 +9,6 @@ RSpec.describe MasterLeaguePlayerBuilder, :type => :model do
         mlpb = MasterLeaguePlayerBuilder.new(user.id)
 
         expect(mlpb.master_league_players.count).to eq 10
-        binding.pry
       end
     end
   end

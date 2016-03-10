@@ -47,31 +47,37 @@ class Presenter
   end
 
   def all_champions
-    service.all_champions[:champions].each do |champion|
-      Champion.find_or_create_by(champion_id: champion[:id]) do |new_champion|
-        new_champion.ranked_play_enabled = champion[:rankedPlayEnabled]
-        new_champion.free_to_play = champion[:freeToPlay]
+    Rails.cache.fetch("all_champions_info",
+                      expires_in: 1.hours) do
+      service.all_champions[:champions].each do |champion|
+        Champion.find_or_create_by(champion_id: champion[:id]) do |new_champion|
+          new_champion.ranked_play_enabled = champion[:rankedPlayEnabled]
+          new_champion.free_to_play = champion[:freeToPlay]
+        end
       end
     end
   end
 
   def single_champion_info
-    Champion.all.each do |champion|
-      info = service.single_champion_info(champion)
-      champion.name = info[:name]
-      champion.title = info[:title]
-      downloaded_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/champion/#{info[:name].gsub("Vel'Koz", "Velkoz").gsub("Wukong", "MonkeyKing").gsub("LeBlanc", "Leblanc").gsub("Kha'Zix", "Khazix").gsub("Fiddlesticks", "FiddleSticks").gsub("Cho'Gath", "Chogath").gsub(" ", "").gsub("'", "").gsub(".", "")}.png")
-      fetch_directory("app/assets/images/#{champion.name}")
-      fetch_image(downloaded_image, "app/assets/images/#{champion.name}/#{champion.name}_image.png")
-      champion.image = "#{champion.name}/#{champion.name}_image.png"
-      champion.save
-      info[:spells].each do |spell|
-        downloaded_spell_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/spell/#{spell[:image][:full]}")
-        fetch_image(downloaded_spell_image, "app/assets/images/#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png")
-        spell = Spell.create(name: spell[:name],
-                               description: spell[:description],
-                               image: "#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png")
-        champion.spells << spell
+    Rails.cache.fetch("single_champions_info",
+                      expires_in: 1.hours) do
+      Champion.all.each do |champion|
+        info = service.single_champion_info(champion)
+        champion.name = info[:name]
+        champion.title = info[:title]
+        downloaded_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/champion/#{info[:name].gsub("Vel'Koz", "Velkoz").gsub("Wukong", "MonkeyKing").gsub("LeBlanc", "Leblanc").gsub("Kha'Zix", "Khazix").gsub("Fiddlesticks", "FiddleSticks").gsub("Cho'Gath", "Chogath").gsub(" ", "").gsub("'", "").gsub(".", "")}.png")
+        fetch_directory("app/assets/images/#{champion.name}")
+        fetch_image(downloaded_image, "app/assets/images/#{champion.name}/#{champion.name}_image.png")
+        champion.image = "#{champion.name}/#{champion.name}_image.png"
+        champion.save
+        info[:spells].each do |spell|
+          downloaded_spell_image = open("http://ddragon.leagueoflegends.com/cdn/6.4.2/img/spell/#{spell[:image][:full]}")
+          fetch_image(downloaded_spell_image, "app/assets/images/#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png")
+          spell = Spell.create(name: spell[:name],
+                                 description: spell[:description],
+                                 image: "#{champion.name}/#{spell[:name].gsub(" / ", "_").gsub(" ", "_")}_image.png")
+          champion.spells << spell
+        end
       end
     end
   end
