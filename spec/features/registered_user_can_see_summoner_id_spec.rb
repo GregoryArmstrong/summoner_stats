@@ -23,6 +23,7 @@ RSpec.feature "RegisteredUserCanSeeSummonerId", type: :feature do
       expect(page).to have_content("OctopusMachine")
       expect(page).to have_content("NA")
       expect(page).to have_content("45949943")
+      Rails.cache.clear
     end
   end
 end

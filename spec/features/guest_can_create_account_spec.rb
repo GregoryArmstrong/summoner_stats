@@ -22,6 +22,7 @@ RSpec.feature "GuestCanCreateAccount", type: :feature do
       expect(page).to have_content("Gregory Armstrong")
       expect(page).to have_content("OctopusMachine")
       expect(page).to have_content("NA")
+      Rails.cache.clear
     end
   end
 
@@ -57,6 +58,7 @@ RSpec.feature "GuestCanCreateAccount", type: :feature do
       expect(page).to have_content(user.name)
       expect(page).to have_content("NA")
       expect(page).to have_content("OctopusMachine")
+      Rails.cache.clear
     end
   end
 end

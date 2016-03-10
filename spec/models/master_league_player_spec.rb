@@ -17,6 +17,7 @@ RSpec.describe MasterLeaguePlayer, :type => :model do
         expect(mlp.summoner_id).to eq "37475736"
         expect(mlp.region).to eq "NA"
         expect(mlp.points).to eq 303
+        Rails.cache.clear
       end
     end
   end

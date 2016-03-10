@@ -19,5 +19,6 @@ RSpec.feature "UserSignInStartsBackgroundWorker", type: :feature do
 
     visit user_path(user)
     expect(page).to have_content("Master League Players")
+    Rails.cache.clear
   end
 end

@@ -16,6 +16,7 @@ RSpec.describe MasterLeagueWorker, :type => :model do
         sleep(15)
 
         expect(Rails.cache.read("10_master_player_games_averages")).to_not eq nil
+        Rails.cache.clear
       end
     end
   end

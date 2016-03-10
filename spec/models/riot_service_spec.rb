@@ -10,6 +10,7 @@ RSpec.describe RiotService, :type => :model do
         expect(user.summoner_id).to eq nil
 
         expect(RiotService.new(user).summoner_id[:octopusmachine][:id]).to eq 45949943
+        Rails.cache.clear
       end
     end
   end
@@ -20,6 +21,7 @@ RSpec.describe RiotService, :type => :model do
         user = User.find_by(name: "Greg Riot Service Armstrong")
 
         expect(RiotService.new(user).recent_games(user)).to eq nil
+        Rails.cache.clear
       end
     end
   end
@@ -29,6 +31,7 @@ RSpec.describe RiotService, :type => :model do
         user = User.find_by(name: "Greg Riot Service Armstrong")
 
         expect(RiotService.new(user).master_league_players_info).to_not eq nil
+        Rails.cache.clear
       end
     end
   end
