@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def clear
-    Rails.cache.clear("gamedataaverages-#{params[:id]}")
+    Rails.cache.delete("gamedataaverages-#{params[:id]}")
     redirect_to user_path(params[:user])
   end
 
