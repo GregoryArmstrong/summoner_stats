@@ -1,28 +1,19 @@
-== README
+## SummonerStats
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+League of Legends Stat Tracking Website, with Graphical Comparisons to Current Master League Players
 
-Things you may want to cover:
+[Production App](http://summonerstats.herokuapp.com/)
 
-* Ruby version
+![App Demonstration](http://g.recordit.co/DKUt56aT8C.gif)
 
-* System dependencies
+You can use the production app to create an account, and upon entering your Summoner Name and Region you can obtain information on the last 10 games you've played, with KDA Averages as well as your Item Loadouts. Additionally, you can compare your last 10 game averages with the averages of the current top 10 players in your region.
 
-* Configuration
+### Tools
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Ruby on Rails
+* Redis + SideKiq Background Worker
+* Rails Caching Strategies to Improve Performance
+* RSpec Testing Suite
+* Twitter OAuth
+* MemCachier
+* High Charts
